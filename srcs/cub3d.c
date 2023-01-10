@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:58:05 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/10 21:30:26 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/10 21:44:38 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 		mlx_ptr = mlx_init();
 		window = mlx_new_window(mlx_ptr, 640, 480, "hello");
 		img = load_img("./asset/sword_ground.xpm", mlx_ptr);
-		mlx_put_image_to_window(mlx_ptr, window, img->img, 100, 100);
+		mlx_put_image_to_window(mlx_ptr, window, img->img_ptr, 100, 100);
 
 		char *color_addr;
 

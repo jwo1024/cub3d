@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:04:01 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/10 21:06:27 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/10 21:44:07 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define UTIL_IMG_H
 
 typedef struct s_img{
-	void	*img; // img_ptr;
+	void	*img_ptr;
 	int		width;
 	int		height;
 	char	*addr;
