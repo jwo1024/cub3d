@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:44:21 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/11 17:36:10 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:02:30 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ int	is_valid_mapfile_name(char *mapname)
 	return (FALSE);
 }
 
-static int	is_type_identifier_no(char *strm)
+static int	is_type_identifier(char *line, char *type)
 {
-	return 0;
+	if (ft_strncmp(line, type, ft_strlen(type)) == 0)
+		return (TRUE);
+	return (FALSE);
 }
 
 int	check_line(char *line, t_cub3d_info *info)
@@ -39,18 +41,18 @@ int	check_line(char *line, t_cub3d_info *info)
 	t_textures_file_name *textures_fname;
 
 	textures_fname = &info->textures_file_name;
-	if (textures_fname->wall_north == NULL && is_type_identifier(line, "NO"))
-		init_type_info_no(textures_fname);
-	else if (textures_fname->wall_east == NULL && is_type_identifier(line, "EA"))
-		init_type_info_ea(textures_fname);
-	else if (textures_fname->wall_west == NULL && is_type_identifier(line, "WE"))
-		init_type_info_we(textures_fname);
-	else if (textures_fname->wall_south == NULL && is_type_identifier(line, "SO"))
-		init_type_info_so(textures_fname);
-	else if (textures_fname->sky_color == NULL && is_type_identifier(line, "C"))
-		init_type_info_c(textures_fname);
-	else if (textures_fname->ground_color == NULL && is_type_identifier(line, "F"))
-		init_type_info_f(textures_fname);
+	if (is_type_identifier(line, "NO "))
+		init_type_info_no(textures_fname, line); // 중복검사, 유효성 검사, 저장
+	else if (is_type_identifier(line, "EA "))
+		init_type_info_ea(textures_fname, line);
+	else if (is_type_identifier(line, "WE "))
+		init_type_info_we(textures_fname, line);
+	else if (is_type_identifier(line, "SO "))
+		init_type_info_so(textures_fname, line);
+	else if (is_type_identifier(line, "C "))
+		init_type_info_c(textures_fname, line);
+	else if (is_type_identifier(line, "F "))
+		init_type_info_f(textures_fname, line);
 	else
 		; // 잘못된 id가 들어왔을때, 중복이 들어왔을때 error exit
 	return (1);
