@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:58:05 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/10 21:44:38 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/11 15:48:19 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "util_img.h"
-#include <../mlx/mlx.h>
+#include	"cub3d.h"
+#include	"util_img.h"
+#include	<../mlx/mlx.h>
+#include	"libft.h"
+#include	"map_checker.h"
+#include	<stdio.h>
 #include	<stdlib.h>
 
 void	func(void)
@@ -20,7 +23,7 @@ void	func(void)
 	system("leaks cub3D");
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	void	*mlx_ptr;
 	void	*window;
