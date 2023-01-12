@@ -1,68 +1,103 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker.c                                      :+:      :+:    :+:   */
+/*   check_mapfile_info.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:44:21 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/11 18:02:30 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/12 22:25:35 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	<stdlib.h>
 #include	"libft.h"
 #include	"cub3d.h"
+#include	"util_init_map.h"
+#include	"get_next_line.h"
+#include	"util_error.h"
 
-// 맵이 유효한 파일인지 확인
-// 맵 파일의 확장자가 .cub인지 확인
-int	is_valid_mapfile_name(char *mapname)
+int			is_type_identifier(char *line, char *type);
+static int	is_all_info(int save_info_cnt);
+
+void	check_mapfile_info(int fd, t_cub3d_info *info)
 {
-	char	*addr;
+	char	*line;
+	int		save_info_cnt;
 
-	if (mapname)
+	save_info_cnt = 0;
+	line = get_next_line(fd);
+	while (line)
 	{
-		addr = ft_strchr(mapname, '.');
-		if (addr && ft_strncmp(addr, ".cub\0", 5) == 0)
-			return (TRUE);
+		if (is_all_info(save_info_cnt) == TRUE)
+		{
+			free(line);
+			break ;
+		}
+		else if (!line)
+			exit_with_error("can't find identifier"); //error exit
+		else if (is_empty_line(line) == TRUE)
+			;
+		else
+		{
+			if (check_line(line, info))
+				save_info_cnt++;
+		}
+		free(line);
+		line = get_next_line(fd);
 	}
-	return (FALSE);
 }
 
-static int	is_type_identifier(char *line, char *type)
+int	check_line(char *line, t_cub3d_info *info)
+{
+	t_textures_info	*textures_fname;
+
+	textures_fname = &info->textures_info;
+	if (is_type_identifier(line, "NO"))
+		init_type_info_no(textures_fname, line); // 중복검사, 유효성 검사, 저장
+	else if (is_type_identifier(line, "EA"))
+		init_type_info_ea(textures_fname, line);
+	else if (is_type_identifier(line, "WE"))
+		init_type_info_we(textures_fname, line);
+	else if (is_type_identifier(line, "SO"))
+		init_type_info_so(textures_fname, line);
+	else if (is_type_identifier(line, "C"))
+		init_type_info_c(textures_fname, line);
+	else if (is_type_identifier(line, "F"))
+		init_type_info_f(textures_fname, line);
+	else
+		exit_with_error("identifier error");
+	return (1);
+}
+
+int	is_type_identifier(char *line, char *type)
 {
 	if (ft_strncmp(line, type, ft_strlen(type)) == 0)
 		return (TRUE);
 	return (FALSE);
 }
 
-int	check_line(char *line, t_cub3d_info *info)
+int	is_empty_line(char *line)
 {
-	t_textures_file_name *textures_fname;
+	int	idx;
 
-	textures_fname = &info->textures_file_name;
-	if (is_type_identifier(line, "NO "))
-		init_type_info_no(textures_fname, line); // 중복검사, 유효성 검사, 저장
-	else if (is_type_identifier(line, "EA "))
-		init_type_info_ea(textures_fname, line);
-	else if (is_type_identifier(line, "WE "))
-		init_type_info_we(textures_fname, line);
-	else if (is_type_identifier(line, "SO "))
-		init_type_info_so(textures_fname, line);
-	else if (is_type_identifier(line, "C "))
-		init_type_info_c(textures_fname, line);
-	else if (is_type_identifier(line, "F "))
-		init_type_info_f(textures_fname, line);
-	else
-		; // 잘못된 id가 들어왔을때, 중복이 들어왔을때 error exit
-	return (1);
+	idx = 0;
+	if (line)
+	{
+		while ((line[idx] >= 9 && line[idx] <= 13) || line[idx] == ' ')
+			idx++;
+		if ((int)ft_strlen(line) == idx)
+			return (TRUE);
+	}
+	return (FALSE);
 }
 
-int	map_texture()
+static int	is_all_info(int save_info_cnt)
 {
+	if (save_info_cnt == 6)
+		return (TRUE);
+	return (FALSE);
 }
-
-
 
 // NO, SO, WE, EA, F, C로 시작하는 type identifier가 다 들어있는지, 양식대로 들어와있는지 확인
 // (Map을 제외하고 비어있는 줄이 들어있을 수 있음)

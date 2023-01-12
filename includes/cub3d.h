@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:01:40 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/11 17:09:36 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/12 21:47:12 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,28 @@
 
 typedef struct s_textures_img{
 	t_img	*canvas;
-	t_img	*wall_east;
-	t_img	*wall_west;
-	t_img	*wall_south;
-	t_img	*wall_north;
-	t_img	*sky; // img -> color ?
+	t_img	*wall_ea;
+	t_img	*wall_we;
+	t_img	*wall_so;
+	t_img	*wall_no;
+	t_img	*sky;
 	t_img	*ground;
 }	t_textures_img;
 
-typedef struct s_textures_file_name{
-	char	*canvas;
-	char	*wall_east;
-	char	*wall_west;
-	char	*wall_south;
-	char	*wall_north;
-	char	*sky_color;
-	char	*ground_color;
-}	t_textures_file_name;
+typedef struct s_textures_info{ // textures_init_infos
+	char			*canvas;
+	char			*wall_ea_file_name;
+	char			*wall_we_file_name;
+	char			*wall_so_file_name;
+	char			*wall_no_file_name;
+	unsigned int	sky_color;
+	unsigned int	ground_color;
+}	t_textures_info;
 
 typedef struct s_map{
-	char	**data;
-	int		width;
-	int		height;
+	char			**data;
+	unsigned int	width;
+	unsigned int	height;
 }	t_map;
 
 typedef struct s_window{
@@ -65,7 +65,7 @@ typedef struct s_cub3d_info{
 	t_window				window;
 	t_img					window_buff;
 	t_textures_img			textures;
-	t_textures_file_name	textures_file_name;
+	t_textures_info			textures_info;
 }	t_cub3d_info;
 
 #endif

@@ -6,15 +6,20 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:14:17 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/11 17:30:53 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/12 22:27:55 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"util_init_map.h"
-#include	"map_checker.h"
 #include	"cub3d.h"
 #include	"get_next_line.h"
+#include	"util_error.h"
+#include	"util_safe_libft.h"
+#include	"libft.h"
 #include	<fcntl.h>
+
+static int	is_valid_mapfile_name(char *mapname);
+int	safe_open(char *file_name);
 
 t_cub3d_info	*init_map(t_cub3d_info *info, char *map_file_name)
 {
@@ -22,12 +27,17 @@ t_cub3d_info	*init_map(t_cub3d_info *info, char *map_file_name)
 
 	if (info)
 	{
-		is_valid_mapfile_name(map_file_name);
+		if (is_valid_mapfile_name(map_file_name) == FALSE)
+			exit_with_error("invalid map file");; // error
 		fd = safe_open(map_file_name);
-		// check_map // info->map, info->te
 
-		//  // info->map
-		// is_valid_map;
+		check_mapfile_info(fd, info); // check 함수안에서는 exit가 일어날수 있다는 것을 내포
+		check_mapfile_map(fd, info);
+		close(fd);
+
+		// fd = safe_open(map_file_name);
+		// read_save_map(fd, &info->map);
+		// close(fd);
 	}
 	return (info);
 }
@@ -42,38 +52,15 @@ int	safe_open(char *file_name)
 	return (fd);
 }
 
-int	read_mapfile_info(int fd, t_cub3d_info *info)
+static int	is_valid_mapfile_name(char *mapname)
 {
-	char	*line;
-	int		save_info_cnt;
+	char	*addr;
 
-	save_info_cnt = 0;
-	while (1)
+	if (mapname)
 	{
-		line = get_next_line(fd);
-		if (line && *line == '\n') // 함수화하기
-			;
-		else if (line)
-		{
-			if (check_line(line, info))
-				save_info_cnt++;
-		}
-		else
-			; // fail get file data
+		addr = ft_strchr(mapname, '.');
+		if (addr && ft_strncmp(addr, ".cub\0", 5) == 0)
+			return (TRUE);
 	}
-	if (is_not_all_info(save_info_cnt))
-		; // error..
-	// 한줄씩 읽으면서
-	// 내부함수에서 한줄 타입 검사 및 info 저장
-}
-
-int	read_mapfile_map(int fd)
-{
-	char	**map_addr;
-
-	// 아 포인터 크기만 변경해주면 되어요 char **
-
-	// gnl 에서 알아서 char *을 뱉으니까
-	// 다 읽어와서 char **에 저장
-
+	return (FALSE);
 }

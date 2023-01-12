@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker.h                                      :+:      :+:    :+:   */
+/*   util_color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 15:45:15 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/11 16:58:19 by jaeyjeon         ###   ########.fr       */
+/*   Created: 2022/03/02 23:35:14 by jiwolee           #+#    #+#             */
+/*   Updated: 2023/01/12 21:30:01 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_CHECKER_H
-# define MAP_CHECKER_H
+#include	"util_color.h"
 
-int	is_valid_mapfile_name(char *mapname);
+unsigned int	make_color(int a, int r, int g, int b)
+{
+	unsigned int	color;
 
-#endif
+	color = (a << 24) + (r << 16) + (g << 8) + b;
+	return (color);
+}

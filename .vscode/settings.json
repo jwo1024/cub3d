@@ -1,5 +1,11 @@
 {
 	"files.associations": {
-		"util_init_map.h": "c"
+		"util_init_map.h": "c",
+		"map_checker_mapfile.h": "c",
+		"util_error.h": "c",
+		"cub3d.h": "c",
+		"fcntl.h": "c",
+		"sstream": "c",
+		"get_next_line.h": "c"
 	}
 }

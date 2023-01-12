@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker_init_info.h                            :+:      :+:    :+:   */
+/*   util_color.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 17:58:00 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/11 17:58:22 by jaeyjeon         ###   ########.fr       */
+/*   Created: 2022/03/02 23:35:14 by jiwolee           #+#    #+#             */
+/*   Updated: 2023/01/12 17:44:10 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_CHECKER_INIT_INFO_H
-# define MAP_CHECKER_INIT_INFO_H
+#ifndef UTIL_COLOR_H
+# define UTIL_COLOR_H
+
+unsigned int	make_color(int a, int r, int g, int b);
 
 #endif
