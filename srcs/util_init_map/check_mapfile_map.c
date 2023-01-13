@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_mapfile_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:22:42 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/12 22:12:30 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:50:25 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include	"util_error.h"
 
 static unsigned int	check_map_width(char *line);
-static int			is_valid_char(char c);
 static char			*skip_empty_line(int fd);
 
 void	check_mapfile_map(int fd, t_cub3d_info *info)
@@ -43,30 +42,6 @@ void	check_mapfile_map(int fd, t_cub3d_info *info)
 	map->height = height;
 }
 
-static unsigned int	check_map_width(char *line)
-{
-	unsigned int	width;
-
-	width = 0;
-	if (line[0] == '\n')
-		exit_with_error("\n while map");
-	while (line[width])
-	{
-		if (is_valid_char(line[width]) == FALSE)
-			exit_with_error("invalid char in map");
-		width++;
-	}
-	return (width);
-}
-
-static int	is_valid_char(char c)
-{
-	if (c == '0' || c == '1' || c == 'N' || c == 'S' || \
-	c == 'E' || c == 'W' || c == ' ' || c == '\n')
-		return (TRUE);
-	return (FALSE);
-}
-
 static char	*skip_empty_line(int fd)
 {
 	char	*line;
@@ -78,4 +53,24 @@ static char	*skip_empty_line(int fd)
 		line = get_next_line(fd);
 	}
 	return (line);
+}
+
+static unsigned int	check_map_width(char *line)
+{
+	unsigned int	width;
+
+	width = 0;
+	if (line[0] == '\n')
+		exit_with_error("\n while map");
+	while (line[width])
+		width++;
+	return (width);
+}
+
+int	is_valid_char(char c)
+{
+	if (c == '0' || c == '1' || c == 'N' || c == 'S' || \
+	c == 'E' || c == 'W' || c == ' ' || c == '\n')
+		return (TRUE);
+	return (FALSE);
 }

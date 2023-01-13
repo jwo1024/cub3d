@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_type_info1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:15:15 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/12 22:19:42 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/13 16:39:49 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	init_type_info_f(t_textures_info *textures_info, char *line)
 {
 	char	*info_line;
 
-	if (textures_info->ground_color == 0)
+	if (textures_info->floor_color == 0)
 	{
 		info_line = get_info_line(line, 1);
-		if_valid_type_save_color(info_line, &textures_info->ground_color);
+		if_valid_type_save_color(info_line, &textures_info->floor_color);
 		free(info_line);
 	}
 	else
@@ -40,10 +40,10 @@ void	init_type_info_c(t_textures_info *textures_info, char *line)
 {
 	char	*info_line;
 
-	if (textures_info->sky_color == 0)
+	if (textures_info->ceiling_color == 0)
 	{
 		info_line = get_info_line(line, 1);
-		if_valid_type_save_color(info_line, &textures_info->sky_color);
+		if_valid_type_save_color(info_line, &textures_info->ceiling_color);
 		free(info_line);
 	}
 	else

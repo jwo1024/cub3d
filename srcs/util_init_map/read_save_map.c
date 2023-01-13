@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_save_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 21:00:21 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/12 22:07:17 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:27:11 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,50 +16,27 @@
 #include	"get_next_line.h"
 #include	"libft.h"
 
+static char	*skip_mapfile_info_line(int fd);
+static int	is_info_line(char *line);
+static char	*make_line_width(char *line, int width);
+static char	*fill_line_back_to_blank(char *line, char *new_line, int width);
+
 void	read_save_map(int fd, t_map *map)
 {
 	char			*line;
-	unsigned int	x;
 	unsigned int	y;
 
-	malloc_t_map(map);
-	line = skip_empty_line(fd);
+	map->data = ft_calloc(map->height, sizeof(char *)); // safe_ft_calloc
+	line = skip_mapfile_info_line(fd); // if empty line();
+//	line = skip_empty_line(fd); // 없애도 ?  
 	y = 0;
 	while (line && y < map->height)
 	{
+		map->data[y] = make_line_width(line, map->width);
 		free(line);
 		line = get_next_line(fd);
-	//	y = ;
-		map->data[y] = ft_memcpy();
 		y++;
 	}
-	(void);
-	// info 넘어가고
-	// 읽고
-	// 저장하고
-
-
-}
-
-static t_map	*malloc_t_map(t_map *map)
-{
-	int	idx;
-
-	if (map && map->data == NULL)
-	{
-		map->data = (char *)malloc(sizeof(char) * map->height);
-		if (map->data == NULL)
-			; // fata error
-		idx = 0;
-		while (idx < map->height)
-		{
-			map->data[idx] = (char)malloc(sizeof(char) * map->width + 1);
-			if (map->data[idx] == NULL)
-				; // fatal error
-			idx++;
-		}
-	}
-	return (map);
 }
 
 static char	*skip_mapfile_info_line(int fd)
@@ -83,4 +60,31 @@ static int	is_info_line(char *line)
 		|| is_empty_line(line))
 		return (TRUE);
 	return (FALSE);
+}
+
+static char	*make_line_width(char *line, int width)
+{
+	char	*new_line;
+
+	new_line = ft_calloc(width + 1, sizeof(char)); // safe_ft_calloc
+	new_line = ft_memcpy(new_line, line, ft_strlen(line));
+	new_line = fill_line_back_to_blank(line, new_line, width);
+	return (new_line);
+}
+
+static char	*fill_line_back_to_blank(char *line, char *new_line, int width)
+{
+	int	idx;
+
+	idx = 0;
+	idx = ft_strlen(line);
+	if (new_line[idx] == '\n')
+		--idx;
+	while (idx < width)
+	{
+		new_line[idx] = ' ';
+		++idx;
+	}
+	new_line[idx] = '\0';
+	return (new_line);
 }

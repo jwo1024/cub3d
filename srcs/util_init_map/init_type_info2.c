@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_type_info2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:57:44 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/12 22:01:33 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:27:55 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ char	*get_info_line(char *line, int start_num)
 	char	*info_line;
 
 	start = start_num;
+	if (line[start] && line[start] != ' ')
+		exit_with_error("space not found at identifier");;//error
 	while(line[start] && line[start] == ' ')
 	{
 		start++;
