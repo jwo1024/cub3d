@@ -20,3 +20,5 @@ void	destroy_window(t_cub3d_info *info)
 	if (info->window)
 		mlx_destroy_window(info->mlx, info->window);
 }
+
+// mlx_new_image() ?

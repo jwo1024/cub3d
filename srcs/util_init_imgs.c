@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:32:32 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/13 18:05:24 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/16 15:09:41 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,10 @@ static void	get_xpm_data_from_file(void *mlx, t_img *img, char *file_name)
 {
 	if (!img || !mlx || img->img_ptr)
 		;
-//	printf("..%s..\n", file_name);
 	img->img_ptr = \
 		mlx_xpm_file_to_image(mlx, file_name, &img->width, &img->height);
 	if (img->img_ptr == NULL)
 		; // 잘못된 file name 혹은 불러오기 실패
-
 	img->addr = mlx_get_data_addr \
 		(img->img_ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
 }
