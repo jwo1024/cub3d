@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:01:40 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/16 15:16:32 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/23 21:43:31 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define SCREEN_HEIGHT	1080
 
 typedef struct s_textures_img{
-	t_img	background; // window? 
+	t_img	background; // window?
 	t_img	wall_ea;
 	t_img	wall_we;
 	t_img	wall_so;

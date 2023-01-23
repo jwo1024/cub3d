@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_mapfile_valid.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:39:55 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/13 16:32:49 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/23 21:32:36 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,6 @@ static void	init_player(t_cub3d_info *info, unsigned int x, unsigned int y)
 		info->player.dir_x = (double)1;
 		info->player.dir_y = (double)0;
 	}
-	info->player.plane_x = 0.66; // 우리가 설정하기 나름
-	info->player.plane_y = 0;
+	info->player.plane_x = 0; // 우리가 설정하기 나름
+	info->player.plane_y = 0.66;
 }

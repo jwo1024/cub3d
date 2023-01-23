@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:58:05 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/13 18:34:22 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/23 21:49:57 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include	"util_init_map.h"
 #include	"cub3d.h"
 #include	"util_init.h"
+#include	"ray_cast.h"
 #include	<stdio.h>
 #include	<stdlib.h>
 
@@ -27,7 +28,7 @@ void	func(void)
 
 void	memset_info(t_cub3d_info *info);
 
-int	main(int argc, char *argv[])
+int	main(int argc, char *argv[]) // identfier와 map이 정확히 한줄 띄워져있을때만 정상작동함
 {
 	t_cub3d_info	info;
 
@@ -51,9 +52,10 @@ int	main(int argc, char *argv[])
 	for (unsigned int i = 0; i < info.map.height ; i++)
 		printf("%s@\n", info.map.data[i]);
 
-	printf("4> %f %f \n%f %f \n%f %f\n", info.player.dir_x, info.player.dir_y, \
-		info.player.plane_x, info.player.plane_y, info.player.pos_x, info.player.pos_y);
+	// printf("4> %f %f \n%f %f \n%f %f\n", info.player.dir_x, info.player.dir_y, \
+	// info.player.plane_x, info.player.plane_y, info.player.pos_x, info.player.pos_y);
 //	system("leaks cub3D");
+	// mlx_loop_hook(info.mlx, &ray_cast, &info);
 	mlx_loop(info.mlx);
 	return (0);
 }

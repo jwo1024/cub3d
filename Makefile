@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+         #
+#    By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 15:27:03 by jiwolee           #+#    #+#              #
-#    Updated: 2023/01/13 17:50:54 by jiwolee          ###   ########.fr        #
+#    Updated: 2023/01/23 21:19:33 by jaeyjeon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRCS_1		= ./srcs/cub3d.c \
 			  ./srcs/util_safe_libft.c \
 			  ./srcs/util_init_map/check_mapfile_valid.c \
 			  ./srcs/util_init_mlx.c \
-			  ./srcs/util_init_imgs.c
+			  ./srcs/util_init_imgs.c \
+			  ./srcs/ray_cast.c
 
 SRCS_2		= ./gnl_for_cub3d/get_next_line.c\
 			  ./gnl_for_cub3d/get_next_line_utils.c

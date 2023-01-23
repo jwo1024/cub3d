@@ -6,31 +6,65 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:52:17 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/23 19:41:13 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/23 21:47:40 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 #include	"ray_cast.h"
 #include	"math.h"
+#include	"mlx.h"
+#include	<stdlib.h>
 
 static void	init_ray_info(t_cub3d_info *info, t_ray_info *ray_info, int x);
 static void	calc_first_ray_dist(t_cub3d_info *info, t_ray_info *ray_info);
 static void	check_ray_hit(t_cub3d_info *info, t_ray_info *ray_info);
 
-void	ray_cast(t_cub3d_info *info)
+void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, int x)
+{
+	int y;
+	int color;
+
+	color = 0xff0000;
+	y = ray_info->draw_start;
+	while (y <= ray_info->draw_end)
+	{
+		mlx_pixel_put(info->mlx, info->window, x, y, color);
+		color++;
+		y++;
+	}
+}
+
+int	ray_cast(t_cub3d_info *info)
 {
 	int			x;
-	t_ray_info	ray_info;
+	t_ray_info	*ray_info;
 
 	x = 0;
 	while (x < SCREEN_WIDTH)
 	{
-		init_ray_info(info, &ray_info, x);
-		calc_first_ray_dist(info, &ray_info);
-		check_ray_hit(info, &ray_info);
+		ray_info = malloc(sizeof(t_ray_info));
+		init_ray_info(info, ray_info, x);
+		calc_first_ray_dist(info, ray_info);
+		check_ray_hit(info, ray_info);
+		if (ray_info->is_y_side == FALSE)
+		ray_info->wall_dist = (ray_info->ray_x - info->player.pos_x + \
+					(1 - ray_info->ray_move_dir_x) / 2) / ray_info->raydir_x;
+		else
+		ray_info->wall_dist = (ray_info->ray_y - info->player.pos_y + \
+					(1 - ray_info->ray_move_dir_y) / 2) / ray_info->raydir_y;
+		ray_info->wall_height = (int)(SCREEN_HEIGHT / ray_info->wall_dist);
+		ray_info->draw_start = -ray_info->wall_height / 2 + SCREEN_HEIGHT / 2;
+		if (ray_info->draw_start < 0)
+			ray_info->draw_start = 0;
+		ray_info->draw_end = ray_info->wall_height / 2 + SCREEN_HEIGHT / 2;
+		if (SCREEN_HEIGHT <= ray_info->draw_end)
+			ray_info->draw_end = SCREEN_HEIGHT - 1;
+		ver_line(info, ray_info, x);
+		free(ray_info);
 		x++;
 	}
+	return (0);
 }
 
 static void	init_ray_info(t_cub3d_info *info, t_ray_info *ray_info, int x)
@@ -72,7 +106,10 @@ static void	calc_first_ray_dist(t_cub3d_info *info, t_ray_info *ray_info)
 
 static void	check_ray_hit(t_cub3d_info *info, t_ray_info *ray_info) // DDA
 {
-	while (info->map.data[ray_info->ray_y][ray_info->ray_x] != '1')
+	int	hit;
+
+	hit = 0;
+	while (hit == 0)
 	{
 		if (ray_info->first_dist_x < ray_info->first_dist_y)
 		{
@@ -86,5 +123,7 @@ static void	check_ray_hit(t_cub3d_info *info, t_ray_info *ray_info) // DDA
 			ray_info->ray_y += ray_info->ray_move_dir_y;
 			ray_info->is_y_side = TRUE;
 		}
+		if (info->map.data[ray_info->ray_y][ray_info->ray_x] == '1')
+			hit = 1;
 	}
 }

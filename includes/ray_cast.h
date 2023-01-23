@@ -8,7 +8,9 @@ typedef struct s_ray_info
 	int		ray_y;
 	int		ray_move_dir_x;
 	int		ray_move_dir_y;
-	int		is_y;
+	int		is_y_side;
+	int		draw_start;
+	int		draw_end;
 	double	camera_x;
 	double	raydir_x;
 	double	raydir_y;
@@ -17,9 +19,12 @@ typedef struct s_ray_info
 	double	second_dist_x;
 	double	second_dist_y;
 	double	wall_dist;
+	double	wall_height;
 }	t_ray_info;
 
-#endif;
+int	ray_cast(t_cub3d_info *info);
+
+#endif
 
 
 /*
