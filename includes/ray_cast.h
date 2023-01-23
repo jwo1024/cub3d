@@ -6,6 +6,9 @@ typedef struct s_ray_info
 {
 	int		ray_x;
 	int		ray_y;
+	int		ray_move_dir_x;
+	int		ray_move_dir_y;
+	int		is_y;
 	double	camera_x;
 	double	raydir_x;
 	double	raydir_y;
@@ -13,6 +16,7 @@ typedef struct s_ray_info
 	double	first_dist_y;
 	double	second_dist_x;
 	double	second_dist_y;
+	double	wall_dist;
 }	t_ray_info;
 
 #endif;
