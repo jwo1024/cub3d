@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:58:05 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/23 21:49:57 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/24 18:08:11 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include	"cub3d.h"
 #include	"util_init.h"
 #include	"ray_cast.h"
+#include	"util_action.h"
 #include	<stdio.h>
 #include	<stdlib.h>
 
@@ -40,10 +41,10 @@ int	main(int argc, char *argv[]) // identfier와 map이 정확히 한줄 띄워�
 		init_mlx_win(&info);
 		init_imgs(&info);
 
-		mlx_put_image_to_window(info.mlx, info.window, info.textures.wall_ea.img_ptr, 0, 0);
-		mlx_put_image_to_window(info.mlx, info.window, info.textures.wall_we.img_ptr, 100, 0);
-		mlx_put_image_to_window(info.mlx, info.window, info.textures.wall_so.img_ptr, 0, 100);
-		mlx_put_image_to_window(info.mlx, info.window, info.textures.wall_no.img_ptr, 100, 100);
+		//mlx_put_image_to_window(info.mlx, info.window, info.textures.wall_ea.img_ptr, 0, 0);
+		//mlx_put_image_to_window(info.mlx, info.window, info.textures.wall_we.img_ptr, 100, 0);
+		//mlx_put_image_to_window(info.mlx, info.window, info.textures.wall_so.img_ptr, 0, 100);
+		//mlx_put_image_to_window(info.mlx, info.window, info.textures.wall_no.img_ptr, 100, 100);
 
 	}
 	printf("1> %d  %d  %X  %X\n", info.map.height, info.map.width, info.textures_info.floor_color, info.textures_info.ceiling_color);
@@ -55,7 +56,9 @@ int	main(int argc, char *argv[]) // identfier와 map이 정확히 한줄 띄워�
 	// printf("4> %f %f \n%f %f \n%f %f\n", info.player.dir_x, info.player.dir_y, \
 	// info.player.plane_x, info.player.plane_y, info.player.pos_x, info.player.pos_y);
 //	system("leaks cub3D");
-	// mlx_loop_hook(info.mlx, &ray_cast, &info);
+	mlx_hook(info.window, 2, 0, &key_pressed, &info);
+	mlx_loop_hook(info.mlx, &ray_loop, &info);
+	//mlx_loop_hook(info.mlx, &main_loop, &info);
 	mlx_loop(info.mlx);
 	return (0);
 }

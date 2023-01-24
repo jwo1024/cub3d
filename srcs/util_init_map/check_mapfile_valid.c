@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:39:55 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/23 21:32:36 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/24 18:53:22 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,28 +78,37 @@ static int	classify_moveable_space(char map_data)
 
 static void	init_player(t_cub3d_info *info, unsigned int x, unsigned int y)
 {
+	double	plane_size;
+
+	plane_size = 0.66; //width / height
 	info->player.pos_x = (double)x;
 	info->player.pos_y = (double)y;
 	if (info->map.data[y][x] == 'N')
 	{
 		info->player.dir_x = (double)0;
 		info->player.dir_y = (double)-1;
+		info->player.plane_x = (double)-plane_size;
+		info->player.plane_y = (double)0;
 	}
 	else if (info->map.data[y][x] == 'S')
 	{
 		info->player.dir_x = (double)0;
 		info->player.dir_y = (double)1;
+		info->player.plane_x = (double)plane_size;
+		info->player.plane_y = (double)0;
 	}
 	else if (info->map.data[y][x] == 'W')
 	{
 		info->player.dir_x = (double)-1;
 		info->player.dir_y = (double)0;
+		info->player.plane_x = (double)0.0;
+		info->player.plane_y = (double)plane_size;
 	}
 	else if (info->map.data[y][x] == 'E')
 	{
 		info->player.dir_x = (double)1;
 		info->player.dir_y = (double)0;
+		info->player.plane_x = (double)0.0;
+		info->player.plane_y = (double)-plane_size;
 	}
-	info->player.plane_x = 0; // 우리가 설정하기 나름
-	info->player.plane_y = 0.66;
 }

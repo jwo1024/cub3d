@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_cast.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/24 17:36:42 by jaeyjeon          #+#    #+#             */
+/*   Updated: 2023/01/24 18:07:50 by jaeyjeon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef RAY_CAST_H
 # define RAY_CAST_H
+
+# include "cub3d.h"
 
 typedef struct s_ray_info
 {
@@ -22,11 +35,12 @@ typedef struct s_ray_info
 	double	wall_height;
 }	t_ray_info;
 
-int	ray_cast(t_cub3d_info *info);
+void	ray_cast(t_cub3d_info *info);
+int		main_loop(t_cub3d_info *info);
+int		ray_loop(t_cub3d_info *info);
+void	calc_wall_height(t_cub3d_info *info, t_ray_info *ray_info);
 
 #endif
-
-
 /*
 typedef struct s_player{
 	double	pos_x;

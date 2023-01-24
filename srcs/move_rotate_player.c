@@ -3,26 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   move_rotate_player.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:12:59 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/16 17:21:16 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/24 18:20:39 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
+#include	"util_action.h"
 #include	<math.h>
 
 void	move_player(t_cub3d_info *info, double speed) // speed * -1 or 1
 {
 	// 충돌검사
-	// 0 = 0 ~ 1 까지 이니까. 
+	// 0 = 0 ~ 1 까지 이니까.
 	double	new_x;
 	double	new_y;
 
 	new_x = info->player.dir_x * speed + info->player.pos_x;
 	new_y = info->player.dir_y * speed + info->player.pos_y;
-	if (info->map.data[(int)new_y][(int)new_x] != 1);//is_not_wall(int x, int y);
+	if (info->map.data[(int)new_y][(int)new_x] != '1')//is_not_wall(int x, int y);
 	{
 		info->player.pos_x = new_x;
 		info->player.pos_y = new_y;

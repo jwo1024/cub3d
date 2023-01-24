@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:01:40 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/23 21:43:31 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/24 17:48:11 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # define TRUE	1
 # define FALSE	0
 
-# define SCREEN_WIDTH	1920
-# define SCREEN_HEIGHT	1080
+# define SCREEN_WIDTH	1280
+# define SCREEN_HEIGHT	960
 
 typedef struct s_textures_img{
 	t_img	background; // window?

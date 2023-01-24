@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:52:17 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/23 21:47:40 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:07:30 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,56 +20,51 @@ static void	init_ray_info(t_cub3d_info *info, t_ray_info *ray_info, int x);
 static void	calc_first_ray_dist(t_cub3d_info *info, t_ray_info *ray_info);
 static void	check_ray_hit(t_cub3d_info *info, t_ray_info *ray_info);
 
-void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, int x)
+void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, int x, int color)
 {
-	int y;
-	int color;
+	int		y;
+	char	*pixel_addr;
 
-	color = 0xff0000;
 	y = ray_info->draw_start;
 	while (y <= ray_info->draw_end)
 	{
-		mlx_pixel_put(info->mlx, info->window, x, y, color);
-		color++;
+		// info->textures->background
+		pixel_addr = get_pixel_addr_img(&info->textures.background, x, y);
+		*(unsigned int *)pixel_addr = (unsigned int)color;
+		//mlx_pixel_put(info->mlx, info->window, x, y, color);
 		y++;
 	}
 }
 
-int	ray_cast(t_cub3d_info *info)
+void	ray_cast(t_cub3d_info *info)
 {
 	int			x;
-	t_ray_info	*ray_info;
+	int			color;
+	t_ray_info	ray_info;
 
 	x = 0;
+	mlx_clear_window(info->mlx, info->window);
 	while (x < SCREEN_WIDTH)
 	{
-		ray_info = malloc(sizeof(t_ray_info));
-		init_ray_info(info, ray_info, x);
-		calc_first_ray_dist(info, ray_info);
-		check_ray_hit(info, ray_info);
-		if (ray_info->is_y_side == FALSE)
-		ray_info->wall_dist = (ray_info->ray_x - info->player.pos_x + \
-					(1 - ray_info->ray_move_dir_x) / 2) / ray_info->raydir_x;
+		init_ray_info(info, &ray_info, x);
+		calc_first_ray_dist(info, &ray_info);
+		check_ray_hit(info, &ray_info);
+		calc_wall_height(info, &ray_info);
+		if (info->map.data[ray_info.ray_y][ray_info.ray_x] == '1')
+			color = 0xFF0000;
 		else
-		ray_info->wall_dist = (ray_info->ray_y - info->player.pos_y + \
-					(1 - ray_info->ray_move_dir_y) / 2) / ray_info->raydir_y;
-		ray_info->wall_height = (int)(SCREEN_HEIGHT / ray_info->wall_dist);
-		ray_info->draw_start = -ray_info->wall_height / 2 + SCREEN_HEIGHT / 2;
-		if (ray_info->draw_start < 0)
-			ray_info->draw_start = 0;
-		ray_info->draw_end = ray_info->wall_height / 2 + SCREEN_HEIGHT / 2;
-		if (SCREEN_HEIGHT <= ray_info->draw_end)
-			ray_info->draw_end = SCREEN_HEIGHT - 1;
-		ver_line(info, ray_info, x);
-		free(ray_info);
+			color = 0xFFFF00;
+		if (ray_info.is_y_side == TRUE)
+			color = color / 2;
+		ver_line(info, &ray_info, x, color);
 		x++;
 	}
-	return (0);
+	mlx_put_image_to_window(info->mlx, info->window, info->textures.background.img_ptr, 0, 0); //
 }
 
 static void	init_ray_info(t_cub3d_info *info, t_ray_info *ray_info, int x)
 {
-	ray_info->camera_x = 2 * x / SCREEN_WIDTH - 1;
+	ray_info->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
 	ray_info->raydir_x = info->player.dir_x + \
 						info->player.plane_x * ray_info->camera_x;
 	ray_info->raydir_y = info->player.dir_y + \
@@ -82,22 +77,22 @@ static void	init_ray_info(t_cub3d_info *info, t_ray_info *ray_info, int x)
 
 static void	calc_first_ray_dist(t_cub3d_info *info, t_ray_info *ray_info)
 {
-	if (ray_info->raydir_x < 0) // 오른쪽으로 가다가 만나는 x
+	if (ray_info->raydir_x < 0)
 	{
 		ray_info->ray_move_dir_x = -1;
 		ray_info->first_dist_x = (info->player.pos_x - ray_info->ray_x) * ray_info->second_dist_x;
 	}
-	else // 왼으로 가다가 만나는 x
+	else
 	{
 		ray_info->ray_move_dir_x = 1;
 		ray_info->first_dist_x = (ray_info->ray_x + 1.0 - info->player.pos_x) * ray_info->second_dist_x;
 	}
-	if (ray_info->raydir_y < 0) // 위로 가다가 만나는 y
+	if (ray_info->raydir_y < 0)
 	{
 		ray_info->ray_move_dir_y = -1;
 		ray_info->first_dist_y = (info->player.pos_y - ray_info->ray_y) * ray_info->second_dist_y;
 	}
-	else // 아래로 가다가 만나는 y
+	else
 	{
 		ray_info->ray_move_dir_y = 1;
 		ray_info->first_dist_y = (ray_info->ray_y + 1.0 - info->player.pos_y) * ray_info->second_dist_y;

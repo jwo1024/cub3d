@@ -6,15 +6,21 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:11:11 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/23 12:52:25 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/24 17:42:53 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 #include	"mlx.h"
 #include	"util_action.h"
+#include	<stdlib.h>
 
-void	key_pressed(int key, t_cub3d_info *info)
+static void	get_key_w(t_cub3d_info *info);
+static void	get_key_s(t_cub3d_info *info);
+static void	get_key_a(t_cub3d_info *info);
+static void	get_key_d(t_cub3d_info *info);
+
+int	key_pressed(int key, t_cub3d_info *info)
 {
 	if (key == KEY_W)
 		get_key_w(info);
@@ -26,8 +32,7 @@ void	key_pressed(int key, t_cub3d_info *info)
 		get_key_d(info);
 	else if (key == KEY_ESC)
 		exit(0);
-	else
-		return ;
+	return (0);
 	// ray_casting(); 버퍼에 그리고
 		// 벽검사 dda
 		// 충돌검사
@@ -58,13 +63,13 @@ static void	get_key_s(t_cub3d_info *info)
 static void	get_key_a(t_cub3d_info *info)
 {
 	double roate_speed = 0.05;
-	rotate_player(info, -roate_speed);
+	rotate_player(info, roate_speed);
 }
 
 static void	get_key_d(t_cub3d_info *info)
 {
 	double roate_speed = 0.05;
-	rotate_player(info, roate_speed);
+	rotate_player(info, -roate_speed);
 }
 
 // w up
