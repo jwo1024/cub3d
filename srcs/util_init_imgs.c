@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_init_imgs.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:32:32 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/16 15:09:41 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/24 21:25:03 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	init_textures_imgs(t_cub3d_info *info)
 	textures_img = &info->textures;
 	textures_info = &info->textures_info;
 	get_xpm_data_from_file(info->mlx, &info->textures.wall_ea, \
-							info->textures_info.wall_ea_file_name);
+							info->textures_info.wall_ea_file_name); // width ? height ? init?
 	get_xpm_data_from_file(info->mlx, &info->textures.wall_no, \
 							info->textures_info.wall_no_file_name);
 	get_xpm_data_from_file(info->mlx, &info->textures.wall_so, \
@@ -59,6 +59,8 @@ static void	new_background_img(void *mlx, t_img *img)
 	if (!img || !mlx || img->img_ptr)
 		;
 	img->img_ptr = mlx_new_image(mlx, SCREEN_WIDTH, SCREEN_HEIGHT); // 64?
+	img->width = SCREEN_WIDTH;
+	img->height = SCREEN_HEIGHT;
 	if (img->img_ptr == NULL)
 		; // img 만들기 실패
 	img->addr = mlx_get_data_addr \

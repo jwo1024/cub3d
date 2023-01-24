@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:52:17 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/24 19:07:30 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/24 21:37:16 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include	"ray_cast.h"
 #include	"math.h"
 #include	"mlx.h"
+#include	"util_draw_img.h"
 #include	<stdlib.h>
 
 static void	init_ray_info(t_cub3d_info *info, t_ray_info *ray_info, int x);
@@ -28,10 +29,8 @@ void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, int x, int color)
 	y = ray_info->draw_start;
 	while (y <= ray_info->draw_end)
 	{
-		// info->textures->background
 		pixel_addr = get_pixel_addr_img(&info->textures.background, x, y);
 		*(unsigned int *)pixel_addr = (unsigned int)color;
-		//mlx_pixel_put(info->mlx, info->window, x, y, color);
 		y++;
 	}
 }
@@ -43,7 +42,8 @@ void	ray_cast(t_cub3d_info *info)
 	t_ray_info	ray_info;
 
 	x = 0;
-	mlx_clear_window(info->mlx, info->window);
+	init_background_img(&info->textures.background,
+		info->textures_info.ceiling_color, info->textures_info.floor_color);
 	while (x < SCREEN_WIDTH)
 	{
 		init_ray_info(info, &ray_info, x);
@@ -59,7 +59,8 @@ void	ray_cast(t_cub3d_info *info)
 		ver_line(info, &ray_info, x, color);
 		x++;
 	}
-	mlx_put_image_to_window(info->mlx, info->window, info->textures.background.img_ptr, 0, 0); //
+	mlx_put_image_to_window(info->mlx, info->window, \
+							info->textures.background.img_ptr, 0, 0);
 }
 
 static void	init_ray_info(t_cub3d_info *info, t_ray_info *ray_info, int x)
@@ -80,22 +81,26 @@ static void	calc_first_ray_dist(t_cub3d_info *info, t_ray_info *ray_info)
 	if (ray_info->raydir_x < 0)
 	{
 		ray_info->ray_move_dir_x = -1;
-		ray_info->first_dist_x = (info->player.pos_x - ray_info->ray_x) * ray_info->second_dist_x;
+		ray_info->first_dist_x = (info->player.pos_x - ray_info->ray_x) \
+									* ray_info->second_dist_x;
 	}
 	else
 	{
 		ray_info->ray_move_dir_x = 1;
-		ray_info->first_dist_x = (ray_info->ray_x + 1.0 - info->player.pos_x) * ray_info->second_dist_x;
+		ray_info->first_dist_x = (ray_info->ray_x + 1.0 - info->player.pos_x) \
+									* ray_info->second_dist_x;
 	}
 	if (ray_info->raydir_y < 0)
 	{
 		ray_info->ray_move_dir_y = -1;
-		ray_info->first_dist_y = (info->player.pos_y - ray_info->ray_y) * ray_info->second_dist_y;
+		ray_info->first_dist_y = (info->player.pos_y - ray_info->ray_y) \
+									* ray_info->second_dist_y;
 	}
 	else
 	{
 		ray_info->ray_move_dir_y = 1;
-		ray_info->first_dist_y = (ray_info->ray_y + 1.0 - info->player.pos_y) * ray_info->second_dist_y;
+		ray_info->first_dist_y = (ray_info->ray_y + 1.0 - info->player.pos_y) \
+									* ray_info->second_dist_y;
 	}
 }
 

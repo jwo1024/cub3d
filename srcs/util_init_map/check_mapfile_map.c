@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_mapfile_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:22:42 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/13 15:50:25 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/24 21:14:21 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include	"util_init_map.h"
 #include	"get_next_line.h"
 #include	"util_error.h"
+#include	"stdio.h"
 
 static unsigned int	check_map_width(char *line);
 static char			*skip_empty_line(int fd);
@@ -36,6 +37,7 @@ void	check_mapfile_map(int fd, t_cub3d_info *info)
 		if (width > map->width)
 			map->width = width;
 		height++;
+		printf("line: %s  height %d width %d\n", line, height, width);
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -47,7 +49,7 @@ static char	*skip_empty_line(int fd)
 	char	*line;
 
 	line = get_next_line(fd);
-	while (line && line[0] == '\n')
+	while (line && line[0] == '\0') // is_whitespace() != FALSE .. !
 	{
 		free(line);
 		line = get_next_line(fd);

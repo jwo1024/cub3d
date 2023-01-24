@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:11:11 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/24 17:42:53 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/24 20:25:30 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,46 +33,24 @@ int	key_pressed(int key, t_cub3d_info *info)
 	else if (key == KEY_ESC)
 		exit(0);
 	return (0);
-	// ray_casting(); 버퍼에 그리고
-		// 벽검사 dda
-		// 충돌검사
-		// 버퍼에 그리기
-			// image texture 비율계산
-	// draw_new_window();
-//	mlx_clear_window(info->mlx, info->window);
-//	mlx_put_image_to_window(info->mlx, info->window, info->textures.background, 0, 0); //window 출력
-
-	//다시 그리기 추가
 }
 
 static void	get_key_w(t_cub3d_info *info)
 {
-	// position = 가는 정도 * 방향;
-	// 가는정도 구조체에 넣기?
-	// modify_player_position(double position);
-	double move_speed = 0.05;
-	move_player(info, move_speed);
+	move_player(info, MOVE_SPEED);
 }
 
 static void	get_key_s(t_cub3d_info *info)
 {
-	double move_speed = 0.05;
-	move_player(info, -move_speed);
+	move_player(info, -MOVE_SPEED);
 }
 
 static void	get_key_a(t_cub3d_info *info)
 {
-	double roate_speed = 0.05;
-	rotate_player(info, roate_speed);
+	rotate_player(info, ROTATE_SPEED);
 }
 
 static void	get_key_d(t_cub3d_info *info)
 {
-	double roate_speed = 0.05;
-	rotate_player(info, -roate_speed);
+	rotate_player(info, -ROTATE_SPEED);
 }
-
-// w up
-// a left
-// s down
-// d right

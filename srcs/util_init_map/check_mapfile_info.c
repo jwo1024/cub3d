@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:44:21 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/12 22:25:35 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/24 21:13:59 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,22 @@ void	check_mapfile_info(int fd, t_cub3d_info *info)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (is_all_info(save_info_cnt) == TRUE)
-		{
-			free(line);
-			break ;
-		}
-		else if (!line)
-			exit_with_error("can't find identifier"); //error exit
-		else if (is_empty_line(line) == TRUE)
+		if (is_empty_line(line) == TRUE)
 			;
 		else
 		{
 			if (check_line(line, info))
 				save_info_cnt++;
+			if (is_all_info(save_info_cnt) == TRUE)
+			{
+				free(line);
+				return ;
+			}
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
+	exit_with_error("can't find identifier");
 }
 
 int	check_line(char *line, t_cub3d_info *info)

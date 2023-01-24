@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:36:42 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/24 18:07:50 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/24 20:30:06 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_ray_info
 }	t_ray_info;
 
 void	ray_cast(t_cub3d_info *info);
-int		main_loop(t_cub3d_info *info);
 int		ray_loop(t_cub3d_info *info);
 void	calc_wall_height(t_cub3d_info *info, t_ray_info *ray_info);
 

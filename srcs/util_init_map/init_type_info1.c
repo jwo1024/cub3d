@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_type_info1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:15:15 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/13 16:39:49 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/24 21:36:59 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void if_valid_type_save_color(char *info_line, unsigned int *save_destina
 		g = atoi(nums[1]);
 		b = atoi(nums[2]);
 		if (r <= 255 && g <= 255 && b <=255)
-			*save_destination = make_color(0xFF, r, g, b);
+			*save_destination = make_color(0x00, r, g, b);
 		else
 			; // error worng 범위
 	}
