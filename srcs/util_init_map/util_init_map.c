@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_init_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:14:17 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/13 15:05:08 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/25 15:42:43 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include	<fcntl.h>
 
 static int	is_valid_mapfile_name(char *mapname);
-int	safe_open(char *file_name);
+int			safe_open(char *file_name);
 
 t_cub3d_info	*init_map(t_cub3d_info *info, char *map_file_name)
 {
@@ -30,11 +30,9 @@ t_cub3d_info	*init_map(t_cub3d_info *info, char *map_file_name)
 		if (is_valid_mapfile_name(map_file_name) == FALSE)
 			exit_with_error("invalid map file"); // error
 		fd = safe_open(map_file_name);
-
 		check_mapfile_info(fd, info); // check 함수안에서는 exit가 일어날수 있다는 것을 내포
 		check_mapfile_map(fd, info);
 		close(fd);
-
 		fd = safe_open(map_file_name);
 		read_save_map(fd, &info->map);
 		close(fd);

@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:36:51 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/24 17:41:16 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/25 16:42:42 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # define KEY_S		1
 # define KEY_D		2
 # define KEY_ESC	53
+# define KEY_LEFT	123
+# define KEY_RIGHT	124
 
 int		key_pressed(int key, t_cub3d_info *info);
 void	move_player(t_cub3d_info *info, double speed);

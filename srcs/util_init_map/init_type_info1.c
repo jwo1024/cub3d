@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:15:15 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/25 15:29:33 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/25 15:43:18 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 static int	is_str_digit(char *str);
 static int	is_valid_type_color_info(char **nums);
-static void if_valid_type_save_color(char *info_line, unsigned int *save_destination);
+static void	if_valid_type_save_color(char *info_line, unsigned int *save_destination);
 
 void	init_type_info_f(t_textures_info *textures_info, char *line)
 {

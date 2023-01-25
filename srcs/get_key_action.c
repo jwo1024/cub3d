@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:11:11 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/24 20:25:30 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/25 16:45:46 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	key_pressed(int key, t_cub3d_info *info)
 {
 	if (key == KEY_W)
 		get_key_w(info);
-	else if (key == KEY_A)
+	else if (key == KEY_A || key == KEY_LEFT)
 		get_key_a(info);
 	else if (key == KEY_S)
 		get_key_s(info);
-	else if (key == KEY_D)
+	else if (key == KEY_D || key == KEY_RIGHT)
 		get_key_d(info);
 	else if (key == KEY_ESC)
 		exit(0);
