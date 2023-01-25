@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:52:17 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/25 22:10:44 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/25 22:46:15 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,38 @@ void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, int screen_x, t_img *tex
 	double	ratio;
 	double triangle;
 
+/*
 	triangle = pow(ray_info->wall_dist, 2) - pow(fabs(ray_info->ray_x - info->player.pos_x), 2);
 	triangle = sqrt(fabs(triangle)); // 나머지 한변의 넓이 가 있을꺼고
 
-	/* ratio 예상한 범위 값이 안나옴 . 0.몇 ~ 나와야함. */
+	// ratio 예상한 범위 값이 안나옴 . 0.몇 ~ 나와야함.
 	ratio = fabs(fabs(info->player.pos_y - (double)ray_info->ray_y) - triangle); 
-//	ratio = 0.4;
 	img_x = ratio * (double)texture->width;
 	printf("ratio %f img_x %d img_width %d\n", ratio, img_x, texture->width);
+*/
 
-//	ratio = (info->player.pos_y - ray_info->ray_y) - triangle;
-/*
-	if (ray_info->is_y_side == TRUE)
+
+	if (ray_info->is_y_side == TRUE && 0)
 	{
-		ratio = ray_info->ray_y;
+		triangle = pow(ray_info->wall_dist, 2) - pow(fabs(ray_info->ray_y - info->player.pos_y), 2);
+		triangle = sqrt(fabs(triangle)); // 나머지 한변의 넓이 가 있을꺼고
+		ratio = fabs(fabs(info->player.pos_x - (double)ray_info->ray_x) - triangle); 
+		img_x = ratio * (double)texture->width;
+		printf("1ratio %f img_x %d img_width %d\n", ratio, img_x, texture->width);
 	}
 	else
 	{
-		ratio = ray_info->ray_x;
+		// wall dist 의 기준은 plane이기 때문에 오차가 나는 것 같다. 
+		// 그렇다면 player의 pos가 아닌 plane상의 pos의 값을 가져와서 계산을 한다면 오차가 사라지지 않을까?!
+		// 아닌 것 같.. 다. 
+		triangle = pow(ray_info->wall_dist, 2) - pow(fabs(ray_info->ray_x - info->player.pos_x), 2);
+		triangle = sqrt(fabs(triangle)); // 나머지 한변의 넓이 가 있을꺼고
+		double first = info->player.dir_y + info->player.plane_y * ray_info->camera_x;
+		ratio = fabs(fabs(first - (double)ray_info->ray_y) - triangle); 
+		img_x = ratio * (double)texture->width;
+		printf("2ratio %f img_x %d img_width %d\n", ratio, img_x, texture->width);
 	}
-*/
+
 
 
 //	img_x = 2;
