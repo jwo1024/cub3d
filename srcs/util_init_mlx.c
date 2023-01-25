@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 19:41:38 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/23 19:41:44 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/25 14:37:22 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	init_mlx_win(t_cub3d_info *info)
 	info->mlx = mlx_init();
 	if (info->mlx == NULL)
 		exit_with_error("mlx init fail");
-	info->window = mlx_new_window(info->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D");
+	info->window = mlx_new_window(info->mlx, \
+								SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D");
 	if (info->window == NULL)
 		exit_with_error("window init fail");
 }

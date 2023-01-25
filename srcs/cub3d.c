@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:58:05 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/24 18:08:11 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/25 15:03:22 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	func(void)
 
 void	memset_info(t_cub3d_info *info);
 
-int	main(int argc, char *argv[]) // identfier와 map이 정확히 한줄 띄워져있을때만 정상작동함
+int	main(int argc, char *argv[]) // 텍스쳐 파일 이름이 잘못되어있을때 세그폴트
 {
 	t_cub3d_info	info;
 

@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:39:55 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/24 18:53:22 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/25 15:05:09 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 static int	classify_moveable_space(char map_data);
 static void	check_position_moveable_space(t_map *map, unsigned int x, unsigned int y);
-static void check_position(t_map *map, unsigned int x, unsigned int y);
+static void	check_position(t_map *map, unsigned int x, unsigned int y);
 static void	init_player(t_cub3d_info *info, unsigned int x, unsigned int y);
 
 int	check_valid_map(t_cub3d_info *info)
 {
 	unsigned int		x;
 	unsigned int		y;
-	int		start_point;
+	int					start_point;
 
 	x = 0;
 	y = 0;
@@ -48,7 +48,7 @@ int	check_valid_map(t_cub3d_info *info)
 	return (TRUE);
 }
 
-static void check_position(t_map *map, unsigned int x, unsigned int y)
+static void	check_position(t_map *map, unsigned int x, unsigned int y)
 {
 	if (is_valid_char(map->data[y][x]) == FALSE)
 		exit_with_error("invalid char in map");
@@ -60,10 +60,10 @@ static void	check_position_moveable_space(t_map *map, unsigned int x, unsigned i
 {
 	if (y == 0 || y == map->height - 1 || x == 0 || x == map->width - 1)
 		exit_with_error("moveable space at edge");
-	else if (map->data[y - 1][x - 1] == ' ' || map->data[y - 1][x] == ' ' ||\
-		 map->data[y - 1][x + 1] == ' ' || map->data[y][x - 1] == ' ' ||\
-		 map->data[y][x + 1] == ' ' || map->data[y + 1][x - 1] == ' ' ||\
-		 map->data[y + 1][x] == ' ' || map->data[y + 1][x + 1] == ' ')
+	else if (map->data[y - 1][x - 1] == ' ' || map->data[y - 1][x] == ' ' || \
+		map->data[y - 1][x + 1] == ' ' || map->data[y][x - 1] == ' ' || \
+		map->data[y][x + 1] == ' ' || map->data[y + 1][x - 1] == ' ' || \
+		map->data[y + 1][x] == ' ' || map->data[y + 1][x + 1] == ' ')
 		exit_with_error("map isn't closed");
 }
 

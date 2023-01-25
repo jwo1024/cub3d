@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:15:15 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/24 21:36:59 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/25 15:29:33 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ static int	is_valid_type_color_info(char **nums)
 	return (FALSE);
 }
 
-static void if_valid_type_save_color(char *info_line, unsigned int *save_destination)
+static void	if_valid_type_save_color(char *info_line, unsigned int *save_destination)
 {
-	char **nums;
-	int	r;
-	int	g;
-	int	b;
+	char	**nums;
+	int		r;
+	int		g;
+	int		b;
 
 	nums = safe_ft_split(info_line, ',');
 	if (is_valid_type_color_info(nums))
@@ -86,12 +86,12 @@ static void if_valid_type_save_color(char *info_line, unsigned int *save_destina
 		r = atoi(nums[0]);
 		g = atoi(nums[1]);
 		b = atoi(nums[2]);
-		if (r <= 255 && g <= 255 && b <=255)
+		if (r <= 255 && g <= 255 && b <= 255)
 			*save_destination = make_color(0x00, r, g, b);
 		else
-			; // error worng 범위
+			exit_with_error("wrong color range");
 	}
 	else
-		; // error wrong clolor info
+		exit_with_error("wrong color info");
 	free_ft_split(nums);
 }

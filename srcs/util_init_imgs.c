@@ -6,13 +6,14 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:32:32 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/24 21:25:03 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/25 15:37:53 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 #include	"util_init.h"
 #include	"mlx.h"
+#include	"util_error.h"
 #include	<stdio.h>
 
 static void	init_textures_imgs(t_cub3d_info *info);
@@ -49,7 +50,7 @@ static void	get_xpm_data_from_file(void *mlx, t_img *img, char *file_name)
 	img->img_ptr = \
 		mlx_xpm_file_to_image(mlx, file_name, &img->width, &img->height);
 	if (img->img_ptr == NULL)
-		; // 잘못된 file name 혹은 불러오기 실패
+		exit_with_error("invalid file"); // 잘못된 file name 혹은 불러오기 실패
 	img->addr = mlx_get_data_addr \
 		(img->img_ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
 }
@@ -62,7 +63,7 @@ static void	new_background_img(void *mlx, t_img *img)
 	img->width = SCREEN_WIDTH;
 	img->height = SCREEN_HEIGHT;
 	if (img->img_ptr == NULL)
-		; // img 만들기 실패
+		exit_with_error("background image fail");; // img 만들기 실패
 	img->addr = mlx_get_data_addr \
 		(img->img_ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
 }
