@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:01:40 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/26 15:56:58 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/26 20:36:12 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_player{
 }	t_player;
 
 typedef struct s_cub3d_info{
+	int						mouse;
 	void					*mlx;
 	void					*window;
 	t_map					map;

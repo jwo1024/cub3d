@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:52:17 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/26 18:09:06 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/26 20:41:57 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,29 @@ static void	check_ray_hit(t_cub3d_info *info, t_ray_info *ray_info);
 
 #include	<stdio.h> // delete
 
-void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen, t_img *texture) // t_img *texture  
+void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen, t_img *texture) // t_img *texture
 {
 	char	*dest_addr;
 	char	*src_addr;
 	t_vector img;
 
 	double	ratio;
-	// if (ray_info->is_y_side == TRUE)
-	/* 왜 이런 식이 유도 되었는지 모르겠다 */
-	/* player pos 을 기준으로 계산되기 때문에 앞뒤로 움직일 때 벽이 흐르는 것 같다 왜? */
-	if (ray_info->is_y_side == TRUE)
-		ratio = ray_info->ray_x + ray_info->wall_dist * ray_info->raydir_x;
-	else
-		ratio = ray_info->ray_y + ray_info->wall_dist * ray_info->raydir_y;
+	// ㅁ^2 + ㅠ^2  =  긴^2
 
+	// AP = PB
+	// AH = BH
+	// PH = 구해주세요
+
+
+	// if (ray_info->is_y_side == TRUE)
+	if (ray_info->is_y_side == TRUE)
+		ratio = info->player.pos_x + ray_info->wall_dist * ray_info->raydir_x;
+	else
+		ratio = info->player.pos_y + ray_info->wall_dist * ray_info->raydir_y;
 	ratio -= floor(ratio);
+
+//
+
 	printf("ratio %f\n", ratio);
 	img.x = (int)(ratio * (double)texture->width);
 	printf("img.x %f text->width %d\n", img.x, texture->width);
@@ -85,12 +92,12 @@ void	ray_cast(t_cub3d_info *info)
 
 static void	init_ray_info(t_cub3d_info *info, t_ray_info *ray_info, int x)
 {
-	ray_info->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
+	ray_info->camera_x = 2 * x / (double)SCREEN_WIDTH - 1; //x 값이 카메라 평면상에서 차지하는 x좌표
 	ray_info->raydir_x = info->player.dir_x + \
-						info->player.plane_x * ray_info->camera_x;
+						info->player.plane_x * ray_info->camera_x;// 카메라 평면에서 출발하는 ray의 방향벡터
 	ray_info->raydir_y = info->player.dir_y + \
 						info->player.plane_y * ray_info->camera_x;
-	ray_info->ray_x = (int)info->player.pos_x;
+	ray_info->ray_x = (int)info->player.pos_x; // 현재 ray가 존재하는 칸의 x,y 좌표
 	ray_info->ray_y = (int)info->player.pos_y;
 	ray_info->second_dist_x = fabs(1 / ray_info->raydir_x);
 	ray_info->second_dist_y = fabs(1 / ray_info->raydir_y);

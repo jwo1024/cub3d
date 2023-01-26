@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:36:51 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/25 16:42:42 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/26 20:57:44 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@
 # define KEY_ESC	53
 # define KEY_LEFT	123
 # define KEY_RIGHT	124
+# define MOUSE_ON_OFF	20
 
 int		key_pressed(int key, t_cub3d_info *info);
 void	move_player(t_cub3d_info *info, double speed);
 void	rotate_player(t_cub3d_info *info, double speed);
+void	mouse_cursor_on_off(t_cub3d_info *info);
+void	get_mouse_action(t_cub3d_info *info);
 
 #endif

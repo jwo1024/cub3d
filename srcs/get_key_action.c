@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:11:11 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/25 16:45:46 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/26 20:41:00 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	key_pressed(int key, t_cub3d_info *info)
 		get_key_s(info);
 	else if (key == KEY_D || key == KEY_RIGHT)
 		get_key_d(info);
+	else if (key == MOUSE_ON_OFF)
+		mouse_cursor_on_off(info);
 	else if (key == KEY_ESC)
 		exit(0);
 	return (0);

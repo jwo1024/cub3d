@@ -6,17 +6,20 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 18:00:35 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/24 18:08:24 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/26 21:04:55 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"ray_cast.h"
 #include	"mlx.h"
+#include	"util_action.h"
 #include	"cub3d.h"
 
 int	ray_loop(t_cub3d_info *info)
 {
 	mlx_clear_window(info->mlx, info->window);
+	if (info->mouse == FALSE)
+		get_mouse_action(info);
 	ray_cast(info);
 	return (0);
 }
