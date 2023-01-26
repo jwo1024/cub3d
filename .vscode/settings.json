@@ -9,6 +9,7 @@
 		"get_next_line.h": "c",
 		"ios": "c",
 		"util_safe_libft.h": "c",
-		"util_img.h": "c"
+		"util_img.h": "c",
+		"complex": "c"
 	}
 }

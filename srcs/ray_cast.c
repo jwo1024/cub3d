@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:52:17 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/25 22:46:15 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/26 18:09:06 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,120 +21,63 @@ static void	init_ray_info(t_cub3d_info *info, t_ray_info *ray_info, int x);
 static void	calc_first_ray_dist(t_cub3d_info *info, t_ray_info *ray_info);
 static void	check_ray_hit(t_cub3d_info *info, t_ray_info *ray_info);
 
-
-// obj_x를 구하려면 
-// obj_x = 광선이 벽에 부딪친 x위치
-// floor() ~ floor() + 1 한칸안에서의 비율을 구해보자
-// ray_x - floor(ray_x) = 소수점값이 나올꺼고 그것이 바로 비율인데 ! 
-// 그렇다면 . 
-// ray_x - floor(ray_x)  = img_x / img.width;
-// img_x =  ray_x - floor(ray_x)  * img.width;
-// (y_size == TRUE) 일때 y 값으로 x를 구해야 한다. 
 #include	<stdio.h> // delete
 
-void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, int screen_x, t_img *texture) // t_img *texture  
+void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen, t_img *texture) // t_img *texture  
 {
-	int		screen_y;
 	char	*dest_addr;
 	char	*src_addr;
-	int		img_y;
-	int		img_x;
+	t_vector img;
+
 	double	ratio;
-	double triangle;
-
-/*
-	triangle = pow(ray_info->wall_dist, 2) - pow(fabs(ray_info->ray_x - info->player.pos_x), 2);
-	triangle = sqrt(fabs(triangle)); // 나머지 한변의 넓이 가 있을꺼고
-
-	// ratio 예상한 범위 값이 안나옴 . 0.몇 ~ 나와야함.
-	ratio = fabs(fabs(info->player.pos_y - (double)ray_info->ray_y) - triangle); 
-	img_x = ratio * (double)texture->width;
-	printf("ratio %f img_x %d img_width %d\n", ratio, img_x, texture->width);
-*/
-
-
-	if (ray_info->is_y_side == TRUE && 0)
-	{
-		triangle = pow(ray_info->wall_dist, 2) - pow(fabs(ray_info->ray_y - info->player.pos_y), 2);
-		triangle = sqrt(fabs(triangle)); // 나머지 한변의 넓이 가 있을꺼고
-		ratio = fabs(fabs(info->player.pos_x - (double)ray_info->ray_x) - triangle); 
-		img_x = ratio * (double)texture->width;
-		printf("1ratio %f img_x %d img_width %d\n", ratio, img_x, texture->width);
-	}
+	// if (ray_info->is_y_side == TRUE)
+	/* 왜 이런 식이 유도 되었는지 모르겠다 */
+	/* player pos 을 기준으로 계산되기 때문에 앞뒤로 움직일 때 벽이 흐르는 것 같다 왜? */
+	if (ray_info->is_y_side == TRUE)
+		ratio = ray_info->ray_x + ray_info->wall_dist * ray_info->raydir_x;
 	else
+		ratio = ray_info->ray_y + ray_info->wall_dist * ray_info->raydir_y;
+
+	ratio -= floor(ratio);
+	printf("ratio %f\n", ratio);
+	img.x = (int)(ratio * (double)texture->width);
+	printf("img.x %f text->width %d\n", img.x, texture->width);
+
+
+	screen->y = ray_info->draw_start;
+	while (screen->y <= ray_info->draw_end)
 	{
-		// wall dist 의 기준은 plane이기 때문에 오차가 나는 것 같다. 
-		// 그렇다면 player의 pos가 아닌 plane상의 pos의 값을 가져와서 계산을 한다면 오차가 사라지지 않을까?!
-		// 아닌 것 같.. 다. 
-		triangle = pow(ray_info->wall_dist, 2) - pow(fabs(ray_info->ray_x - info->player.pos_x), 2);
-		triangle = sqrt(fabs(triangle)); // 나머지 한변의 넓이 가 있을꺼고
-		double first = info->player.dir_y + info->player.plane_y * ray_info->camera_x;
-		ratio = fabs(fabs(first - (double)ray_info->ray_y) - triangle); 
-		img_x = ratio * (double)texture->width;
-		printf("2ratio %f img_x %d img_width %d\n", ratio, img_x, texture->width);
-	}
-
-
-
-//	img_x = 2;
-
-	screen_y = ray_info->draw_start;
-	while (screen_y <= ray_info->draw_end)
-	{
-	//	screen_y / screen_height = img.y / img.height;
-	//	img_y = height안의 시작점 / 길이 * 
-		img_y = (double)(screen_y - ray_info->draw_start) / (double)(ray_info->wall_height/*여기가문제*/) * (double)texture->height;
-		dest_addr = get_pixel_addr_img(&info->textures.background, screen_x, screen_y);
-		src_addr = get_pixel_addr_img(texture, img_x, img_y);
+		img.y = (double)(screen->y - ray_info->draw_start) / (double)(ray_info->wall_height/*여기가문제*/) * (double)texture->height;
+		dest_addr = get_pixel_addr_img(&info->textures.background, screen->x, screen->y);
+		src_addr = get_pixel_addr_img(texture, img.x, img.y);
 		*(unsigned int *)dest_addr = *(unsigned int *)src_addr;
-		screen_y++;
+		screen->y++;
 	}
 }
 
 void	ray_cast(t_cub3d_info *info)
 {
-	int			x;
+	t_vector	screen; //screen.x
 	int			color;
 	t_ray_info	ray_info;
 
-	x = 0;
+	screen.x = 0;
 	init_background_img(&info->textures.background,
 		info->textures_info.ceiling_color, info->textures_info.floor_color);
-	while (x < SCREEN_WIDTH)
+	while (screen.x < SCREEN_WIDTH)
 	{
-		init_ray_info(info, &ray_info, x);
+		init_ray_info(info, &ray_info, screen.x);
 		calc_first_ray_dist(info, &ray_info);
 		check_ray_hit(info, &ray_info);
 		calc_wall_height(info, &ray_info);
 		if (info->map.data[ray_info.ray_y][ray_info.ray_x] == '1')
 			color = 0xFF0000;
 		else
-			color = 0xFFFF00;
+			color = 0xFFFF00; //?
 		if (ray_info.is_y_side == TRUE)
 			color = color / 2;
-		// x = 스크린의 x위치
-		// ray_info.ray_x ? player position.. .
-
-		// obj_x = 광선이 벽에 부딪친 x위치 
-		// y_size == TRUE 일때 y 값으로 x를 구해야 한다. 
-		// 
-		ver_line(info, &ray_info, x, &info->textures.wall_ea); // t_img texture...
-		x++;
-	}
-	{ // test
-		t_img *texture = &info->textures.wall_ea;
-		char *dest_addr;
-		char *src_addr;
-		
-		for (int i = 0; i < texture->width; i++)
-		{
-			for (int j = 0; j< texture->height; j++)
-			{
-				dest_addr = get_pixel_addr_img(&info->textures.background, i, j);
-				src_addr = get_pixel_addr_img(texture, i, j);
-				*(unsigned int *)dest_addr = *(unsigned int *)src_addr;
-			}
-		}
+		ver_line(info, &ray_info, &screen, &info->textures.wall_ea); // t_img texture...
+		screen.x++;
 	}
 	mlx_put_image_to_window(info->mlx, info->window, \
 							info->textures.background.img_ptr, 0, 0);

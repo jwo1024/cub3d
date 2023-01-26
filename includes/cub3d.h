@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:01:40 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/25 16:03:38 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:56:58 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 # define SCREEN_HEIGHT	1080
 # define MOVE_SPEED	0.1
 # define ROTATE_SPEED 0.05
+
+typedef struct s_vector{
+	double	x;
+	double	y;
+}	t_vector;
 
 typedef struct s_textures_img{
 	t_img	background;
@@ -55,6 +60,10 @@ typedef struct s_window{
 }	t_window;
 
 typedef struct s_player{
+	t_vector	pos;
+	t_vector	plane;
+	t_vector	dir;
+
 	double	pos_x;
 	double	pos_y;
 	double	plane_x;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_draw_img.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:30:12 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/25 14:36:44 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:20:20 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_background_img(t_img *background, \
 	unsigned int	color;
 
 	y = 0;
+	pixcel_addr = NULL;
 	color = ceiling_color;
 	while (y < background->height)
 	{
@@ -33,7 +34,8 @@ void	init_background_img(t_img *background, \
 		while (x < background->width)
 		{
 			pixcel_addr = get_pixel_addr_img(background, x, y);
-			*(unsigned int *)pixcel_addr = color;
+			if (pixcel_addr)
+				*(unsigned int *)pixcel_addr = color;
 			++x;
 		}
 		++y;
