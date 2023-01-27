@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:36:42 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/24 20:30:06 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:27:48 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_ray_info
 	int		ray_y;
 	int		ray_move_dir_x;
 	int		ray_move_dir_y;
-	int		is_y_side;
+	int		is_side;
 	int		draw_start;
 	int		draw_end;
 	double	camera_x;
@@ -38,6 +38,8 @@ typedef struct s_ray_info
 void	ray_cast(t_cub3d_info *info);
 int		ray_loop(t_cub3d_info *info);
 void	calc_wall_height(t_cub3d_info *info, t_ray_info *ray_info);
+void	ver_line_each_side(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen);
+void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen, t_img *texture);
 
 #endif
 /*

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:52:17 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/26 20:41:57 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:29:13 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,33 +28,26 @@ void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen, t_img 
 	char	*dest_addr;
 	char	*src_addr;
 	t_vector img;
-
 	double	ratio;
-	// ㅁ^2 + ㅠ^2  =  긴^2
 
-	// AP = PB
-	// AH = BH
-	// PH = 구해주세요
-
-
-	// if (ray_info->is_y_side == TRUE)
-	if (ray_info->is_y_side == TRUE)
+// get_ratio ()
+	if (ray_info->is_side == TRUE)
 		ratio = info->player.pos_x + ray_info->wall_dist * ray_info->raydir_x;
 	else
 		ratio = info->player.pos_y + ray_info->wall_dist * ray_info->raydir_y;
 	ratio -= floor(ratio);
 
+	if ((ray_info->is_side == TRUE && ray_info->ray_move_dir_y < 0) \
+		|| (ray_info->is_side == FALSE && ray_info->ray_move_dir_x > 0))
+		ratio = 1 - ratio;
+	// 이미지 좌우 반전 되는것
 //
 
-	printf("ratio %f\n", ratio);
 	img.x = (int)(ratio * (double)texture->width);
-	printf("img.x %f text->width %d\n", img.x, texture->width);
-
-
 	screen->y = ray_info->draw_start;
 	while (screen->y <= ray_info->draw_end)
 	{
-		img.y = (double)(screen->y - ray_info->draw_start) / (double)(ray_info->wall_height/*여기가문제*/) * (double)texture->height;
+		img.y = ((double)texture->height) / ray_info->wall_height * ((ray_info->wall_height - SCREEN_HEIGHT) / 2 + screen->y);
 		dest_addr = get_pixel_addr_img(&info->textures.background, screen->x, screen->y);
 		src_addr = get_pixel_addr_img(texture, img.x, img.y);
 		*(unsigned int *)dest_addr = *(unsigned int *)src_addr;
@@ -65,7 +58,6 @@ void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen, t_img 
 void	ray_cast(t_cub3d_info *info)
 {
 	t_vector	screen; //screen.x
-	int			color;
 	t_ray_info	ray_info;
 
 	screen.x = 0;
@@ -77,13 +69,8 @@ void	ray_cast(t_cub3d_info *info)
 		calc_first_ray_dist(info, &ray_info);
 		check_ray_hit(info, &ray_info);
 		calc_wall_height(info, &ray_info);
-		if (info->map.data[ray_info.ray_y][ray_info.ray_x] == '1')
-			color = 0xFF0000;
-		else
-			color = 0xFFFF00; //?
-		if (ray_info.is_y_side == TRUE)
-			color = color / 2;
-		ver_line(info, &ray_info, &screen, &info->textures.wall_ea); // t_img texture...
+		ver_line_each_side(info, &ray_info, &screen);
+		// ver_line(info, &ray_info, &screen, &info->textures.wall_ea); // t_img texture...
 		screen.x++;
 	}
 	mlx_put_image_to_window(info->mlx, info->window, \
@@ -94,17 +81,18 @@ static void	init_ray_info(t_cub3d_info *info, t_ray_info *ray_info, int x)
 {
 	ray_info->camera_x = 2 * x / (double)SCREEN_WIDTH - 1; //x 값이 카메라 평면상에서 차지하는 x좌표
 	ray_info->raydir_x = info->player.dir_x + \
-						info->player.plane_x * ray_info->camera_x;// 카메라 평면에서 출발하는 ray의 방향벡터
+						info->player.plane_x * ray_info->camera_x; // ray의 방향벡터
 	ray_info->raydir_y = info->player.dir_y + \
 						info->player.plane_y * ray_info->camera_x;
 	ray_info->ray_x = (int)info->player.pos_x; // 현재 ray가 존재하는 칸의 x,y 좌표
 	ray_info->ray_y = (int)info->player.pos_y;
 	ray_info->second_dist_x = fabs(1 / ray_info->raydir_x);
 	ray_info->second_dist_y = fabs(1 / ray_info->raydir_y);
+	 // 1은 x와 y의 비율로 계산하기때문에 같은값으로 나눠 비율을 같게해주는것, 100이든 1000이든 결과는 같음
 }
 
 static void	calc_first_ray_dist(t_cub3d_info *info, t_ray_info *ray_info)
-{
+{	// first_dist_x : delta_dist_x = (ray_x + 1) - pos_x : 1
 	if (ray_info->raydir_x < 0)
 	{
 		ray_info->ray_move_dir_x = -1;
@@ -142,13 +130,13 @@ static void	check_ray_hit(t_cub3d_info *info, t_ray_info *ray_info) // DDA
 		{
 			ray_info->first_dist_x += ray_info->second_dist_x;
 			ray_info->ray_x += ray_info->ray_move_dir_x;
-			ray_info->is_y_side = FALSE;
+			ray_info->is_side = FALSE;
 		}
 		else
 		{
 			ray_info->first_dist_y += ray_info->second_dist_y;
 			ray_info->ray_y += ray_info->ray_move_dir_y;
-			ray_info->is_y_side = TRUE;
+			ray_info->is_side = TRUE;
 		}
 		if (info->map.data[ray_info->ray_y][ray_info->ray_x] == '1')
 			hit = 1;
