@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:01:40 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/26 20:36:12 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/27 21:56:25 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define SCREEN_HEIGHT	1080
 # define MOVE_SPEED	0.1
 # define ROTATE_SPEED 0.05
+# define MOUSE_ROTATE_SPEED 0.02
 
 typedef struct s_vector{
 	double	x;

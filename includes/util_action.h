@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_action.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:36:51 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/26 20:57:44 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/27 21:16:47 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 int		key_pressed(int key, t_cub3d_info *info);
 void	move_player(t_cub3d_info *info, double speed);
+void	move_player_side(t_cub3d_info *info, double speed);
 void	rotate_player(t_cub3d_info *info, double speed);
 void	mouse_cursor_on_off(t_cub3d_info *info);
 void	get_mouse_action(t_cub3d_info *info);
