@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_init_mlx.c                                    :+:      :+:    :+:   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 19:41:38 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/25 14:37:22 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/28 16:04:40 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	init_mlx_win(t_cub3d_info *info)
 {
 	info->mlx = mlx_init();
 	if (info->mlx == NULL)
-		exit_with_error("mlx init fail");
+		exit_with_error("mlx init error");
 	info->window = mlx_new_window(info->mlx, \
 								SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D");
 	if (info->window == NULL)
-		exit_with_error("window init fail");
+		exit_with_error("window init error");
 }
 
 void	destroy_window(t_cub3d_info *info)

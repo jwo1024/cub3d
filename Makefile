@@ -6,7 +6,7 @@
 #    By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 15:27:03 by jiwolee           #+#    #+#              #
-#    Updated: 2023/01/26 20:41:21 by jaeyjeon         ###   ########.fr        #
+#    Updated: 2023/01/28 17:33:16 by jaeyjeon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,14 +35,14 @@ SRCS_1		= ./srcs/cub3d.c \
 			  ./srcs/util_color.c \
 			  ./srcs/util_safe_libft.c \
 			  ./srcs/util_init_map/check_mapfile_valid.c \
-			  ./srcs/util_init_mlx.c \
-			  ./srcs/util_init_imgs.c \
-			  ./srcs/ray_cast.c \
-			  ./srcs/ray_cast2.c \
-			  ./srcs/get_key_action.c \
-			  ./srcs/move_rotate_player.c \
-			  ./srcs/util_draw_img.c \
-			  ./srcs/get_mouse_action.c
+			  ./srcs/init_mlx.c \
+			  ./srcs/init_imgs.c \
+			  ./srcs/ray_cast/ray_cast.c \
+			  ./srcs/ray_cast/ray_cast2.c \
+			  ./srcs/util_action/get_key_action.c \
+			  ./srcs/util_action/move_rotate_player.c \
+			  ./srcs/util_action/get_mouse_action.c \
+			  ./srcs/minimap.c
 
 SRCS_2		= ./gnl_for_cub3d/get_next_line.c\
 			  ./gnl_for_cub3d/get_next_line_utils.c

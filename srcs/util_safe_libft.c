@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:06:59 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/12 22:21:44 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/28 15:56:57 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,14 @@ void	free_ft_split(char **sptr)
 			free(sptr[idx++]);
 		free(sptr);
 	}
+}
+
+char	*safe_ft_calloc(size_t count, size_t size)
+{
+	char	*newstr;
+
+	newstr = ft_calloc(count, size);
+	if (newstr == NULL)
+		exit_with_error("calloc error");
+	return (newstr);
 }

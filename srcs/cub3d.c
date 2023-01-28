@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:58:05 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/26 22:03:23 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/28 17:48:14 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 #include	"util_error.h"
 #include	<stdio.h>
 #include	<stdlib.h>
+
+#include	"minimap.h"
 
 void	func(void)
 {
@@ -39,9 +41,12 @@ int	main(int argc, char *argv[])
 	if (argc == 2)
 	{
 		init_map(&info, argv[1]);
+
 		check_valid_map(&info);
 		init_mlx_win(&info);
 		init_imgs(&info);
+		init_minimap_img(&info, &info.map);
+
 	}
 	else
 		exit_with_error("argc error");
@@ -50,8 +55,8 @@ int	main(int argc, char *argv[])
 	printf("3> map\n");
 	for (unsigned int i = 0; i < info.map.height ; i++)
 		printf("%s@\n", info.map.data[i]);
-	// printf("4> %f %f \n%f %f \n%f %f\n", info.player.dir_x, info.player.dir_y, \
-	// info.player.plane_x, info.player.plane_y, info.player.pos_x, info.player.pos_y);
+	// printf("4> %f %f \n%f %f \n%f %f\n", info.player.dir.x, info.player.dir_y, \
+	// info.player.plane.x, info.player.plane_y, info.player.pos.x, info.player.pos.y);
 //	system("leaks cub3D");
 	mlx_hook(info.window, 2, 0, &key_pressed, &info);
 	mlx_loop_hook(info.mlx, &ray_loop, &info);

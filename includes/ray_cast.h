@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:36:42 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/27 18:27:48 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/28 16:44:40 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,48 +17,25 @@
 
 typedef struct s_ray_info
 {
-	int		ray_x;
-	int		ray_y;
-	int		ray_move_dir_x;
-	int		ray_move_dir_y;
-	int		is_side;
-	int		draw_start;
-	int		draw_end;
-	double	camera_x;
-	double	raydir_x;
-	double	raydir_y;
-	double	first_dist_x;
-	double	first_dist_y;
-	double	second_dist_x;
-	double	second_dist_y;
-	double	wall_dist;
-	double	wall_height;
+	t_vector	ray;
+	t_vector	ray_move_dir;
+	t_vector	raydir;
+	t_vector	first_dist;
+	t_vector	second_dist;
+	int			is_side;
+	int			draw_start;
+	int			draw_end;
+	double		camera_x;
+	double		wall_dist;
+	double		wall_height;
 }	t_ray_info;
 
 void	ray_cast(t_cub3d_info *info);
 int		ray_loop(t_cub3d_info *info);
 void	calc_wall_height(t_cub3d_info *info, t_ray_info *ray_info);
-void	ver_line_each_side(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen);
-void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen, t_img *texture);
+void	ver_line_each_side(t_cub3d_info *info, t_ray_info *ray_info, \
+														t_vector *screen);
+void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen, \
+															t_img *texture);
 
 #endif
-/*
-typedef struct s_player{
-	double	pos_x;
-	double	pos_y;
-	double	plane_x;
-	double	plane_y;
-	double	dir_x; //방향백터
-	double	dir_y;
-}	t_player;
-이거 쓰면은 되는 것이.. 아닌가욥?
-
-ray의 방향이나 플레이어의 방향이나 같지 않나요??
-아하
-알겟습니당
-
-
-ray의 방향벡터랑 ray좌표도 저기다 넣을까요??
-저건 플레이어의 방향벡터 아닌가욥
-반복문으로 계속 돌려야해서 따로 쓰는게 좋을것같다고 생각했습니답
-*/

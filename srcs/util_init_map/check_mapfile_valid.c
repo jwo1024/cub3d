@@ -6,16 +6,18 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:39:55 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/25 15:05:09 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/28 19:40:05 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 #include	"util_error.h"
 #include	"util_init_map.h"
+#include	"stdlib.h"
 
 static int	classify_moveable_space(char map_data);
-static void	check_position_moveable_space(t_map *map, unsigned int x, unsigned int y);
+static void	check_position_moveable_space(t_map *map, unsigned int x, \
+														unsigned int y);
 static void	check_position(t_map *map, unsigned int x, unsigned int y);
 static void	init_player(t_cub3d_info *info, unsigned int x, unsigned int y);
 
@@ -56,10 +58,11 @@ static void	check_position(t_map *map, unsigned int x, unsigned int y)
 		check_position_moveable_space(map, x, y);
 }
 
-static void	check_position_moveable_space(t_map *map, unsigned int x, unsigned int y)
+static void	check_position_moveable_space(t_map *map, unsigned int x, \
+														unsigned int y)
 {
 	if (y == 0 || y == map->height - 1 || x == 0 || x == map->width - 1)
-		exit_with_error("moveable space at edge");
+		exit_with_error("map isn't closed");
 	else if (map->data[y - 1][x - 1] == ' ' || map->data[y - 1][x] == ' ' || \
 		map->data[y - 1][x + 1] == ' ' || map->data[y][x - 1] == ' ' || \
 		map->data[y][x + 1] == ' ' || map->data[y + 1][x - 1] == ' ' || \
@@ -69,7 +72,8 @@ static void	check_position_moveable_space(t_map *map, unsigned int x, unsigned i
 
 static int	classify_moveable_space(char map_data)
 {
-	if (map_data == 'N' || map_data == 'S' || map_data == 'E' || map_data == 'W')
+	if (map_data == 'N' || map_data == 'S' \
+			|| map_data == 'E' || map_data == 'W')
 		return (2);
 	else if (map_data == '0')
 		return (1);
@@ -80,35 +84,27 @@ static void	init_player(t_cub3d_info *info, unsigned int x, unsigned int y)
 {
 	double	plane_size;
 
-	plane_size = 0.66; //width / height
-	info->player.pos_x = (double)x;
-	info->player.pos_y = (double)y;
+	plane_size = 0.66;
+	info->player.pos.x = (double)x + 0.5;
+	info->player.pos.y = (double)y + 0.5;
 	if (info->map.data[y][x] == 'N')
 	{
-		info->player.dir_x = (double)0;
-		info->player.dir_y = (double)-1;
-		info->player.plane_x = (double)-plane_size;
-		info->player.plane_y = (double)0;
+		set_vector_xy(&(info->player.dir), (double)0, (double)-1);
+		set_vector_xy(&(info->player.plane), -plane_size, (double)0.0);
 	}
 	else if (info->map.data[y][x] == 'S')
 	{
-		info->player.dir_x = (double)0;
-		info->player.dir_y = (double)1;
-		info->player.plane_x = (double)plane_size;
-		info->player.plane_y = (double)0;
+		set_vector_xy(&(info->player.dir), (double)0, (double)1);
+		set_vector_xy(&(info->player.plane), plane_size, (double)0.0);
 	}
 	else if (info->map.data[y][x] == 'W')
 	{
-		info->player.dir_x = (double)-1;
-		info->player.dir_y = (double)0;
-		info->player.plane_x = (double)0.0;
-		info->player.plane_y = (double)plane_size;
+		set_vector_xy(&(info->player.dir), (double)-1, (double)0);
+		set_vector_xy(&(info->player.plane), (double)0.0, plane_size);
 	}
 	else if (info->map.data[y][x] == 'E')
 	{
-		info->player.dir_x = (double)1;
-		info->player.dir_y = (double)0;
-		info->player.plane_x = (double)0.0;
-		info->player.plane_y = (double)-plane_size;
+		set_vector_xy(&(info->player.dir), (double)1, (double)0);
+		set_vector_xy(&(info->player.plane), (double)0.0, -plane_size);
 	}
 }

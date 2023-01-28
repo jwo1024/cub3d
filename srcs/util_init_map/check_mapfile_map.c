@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:22:42 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/24 21:14:21 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/28 17:18:50 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char	*skip_empty_line(int fd)
 	char	*line;
 
 	line = get_next_line(fd);
-	while (line && line[0] == '\0') // is_whitespace() != FALSE .. !
+	while (line && line[0] == '\0')
 	{
 		free(line);
 		line = get_next_line(fd);

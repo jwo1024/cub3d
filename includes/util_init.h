@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_init.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:33:01 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/13 17:49:05 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/28 16:45:12 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,7 @@
 
 void	init_mlx_win(t_cub3d_info *info);
 void	init_imgs(t_cub3d_info *info);
+void	init_background_img(t_img *background, \
+						unsigned int ceiling_color, unsigned int floor_color);
 
 #endif

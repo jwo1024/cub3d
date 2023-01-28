@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_type_info2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:57:44 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/13 14:27:55 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/28 17:21:17 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	init_type_info_no(t_textures_info *textures_info, char *line)
 	if (textures_info->wall_no_file_name == NULL)
 	{
 		info_line = get_info_line(line, 2);
-		// 유효성검사
-		// is_valid_type_file_name(info_line);
 		textures_info->wall_no_file_name = info_line;
 	}
 	else
@@ -41,8 +39,6 @@ void	init_type_info_so(t_textures_info *textures_info, char *line)
 	if (textures_info->wall_so_file_name == NULL)
 	{
 		info_line = get_info_line(line, 2);
-		// 유효성검사
-		// is_valid_type_file_name(info_line);
 		textures_info->wall_so_file_name = info_line;
 	}
 	else
@@ -56,8 +52,6 @@ void	init_type_info_ea(t_textures_info *textures_info, char *line)
 	if (textures_info->wall_ea_file_name == NULL)
 	{
 		info_line = get_info_line(line, 2);
-		// 유효성검사
-		// is_valid_type_file_name(info_line);
 		textures_info->wall_ea_file_name = info_line;
 	}
 	else
@@ -71,8 +65,6 @@ void	init_type_info_we(t_textures_info *textures_info, char *line)
 	if (textures_info->wall_we_file_name == NULL)
 	{
 		info_line = get_info_line(line, 2);
-		// 유효성검사
-		// is_valid_type_file_name(info_line);
 		textures_info->wall_we_file_name = info_line;
 	}
 	else

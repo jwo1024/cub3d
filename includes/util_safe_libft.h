@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:10:00 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/12 17:35:34 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/28 16:45:17 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 
 char	*safe_ft_substr(char const *s, unsigned int start, size_t len);
+char	*safe_ft_calloc(size_t count, size_t size);
 char	**safe_ft_split(char const *s, char c);
 void	free_ft_split(char **s);
 

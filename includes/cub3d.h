@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:01:40 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/27 21:56:25 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/28 18:38:52 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 # define TRUE	1
 # define FALSE	0
 
-# define SCREEN_WIDTH	1920
-# define SCREEN_HEIGHT	1080
-# define MOVE_SPEED	0.1
-# define ROTATE_SPEED 0.05
-# define MOUSE_ROTATE_SPEED 0.02
+# define SCREEN_WIDTH		1920
+# define SCREEN_HEIGHT		1080
+# define MOVE_SPEED			0.05
+# define ROTATE_SPEED		0.05
+# define MOUSE_ROTATE_SPEED	0.02
 
 typedef struct s_vector{
 	double	x;
@@ -31,6 +31,7 @@ typedef struct s_vector{
 
 typedef struct s_textures_img{
 	t_img	background;
+	t_img	minimap;
 	t_img	wall_ea;
 	t_img	wall_we;
 	t_img	wall_so;
@@ -64,13 +65,6 @@ typedef struct s_player{
 	t_vector	pos;
 	t_vector	plane;
 	t_vector	dir;
-
-	double	pos_x;
-	double	pos_y;
-	double	plane_x;
-	double	plane_y;
-	double	dir_x;
-	double	dir_y;
 }	t_player;
 
 typedef struct s_cub3d_info{

@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:44:21 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/24 21:13:59 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/28 17:22:46 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	check_line(char *line, t_cub3d_info *info)
 
 	textures_fname = &info->textures_info;
 	if (is_type_identifier(line, "NO"))
-		init_type_info_no(textures_fname, line); // 중복검사, 유효성 검사, 저장
+		init_type_info_no(textures_fname, line);
 	else if (is_type_identifier(line, "EA"))
 		init_type_info_ea(textures_fname, line);
 	else if (is_type_identifier(line, "WE"))

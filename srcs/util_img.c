@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:29:40 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/12 21:30:48 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/28 18:49:44 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,8 @@
 #include	<mlx.h>
 #include	<stdlib.h>
 
-static t_img	*file_to_img(t_img *img, char *file_name, void *mlx_ptr)
-{
-	if (img)
-	{
-		img->img_ptr = mlx_xpm_file_to_image(mlx_ptr, file_name, \
-									&img->width, &img->height);
-		if (img->img_ptr)
-			return (img);
-	}
-	return (NULL);
-}
-
-static t_img	*get_data_img_addr(t_img *img)
-{
-	if (img && img->img_ptr)
-	{
-		img->addr = mlx_get_data_addr(img->img_ptr, \
-				&img->bits_per_pixel, &img->line_length, &img->endian);
-		if (img->addr)
-			return (img);
-	}
-	return (NULL);
-}
+static t_img	*file_to_img(t_img *img, char *file_name, void *mlx_ptr);
+static t_img	*get_data_img_addr(t_img *img);
 
 t_img	*load_img(char *file_name, void *mlx_ptr)
 {
@@ -69,12 +48,36 @@ char	*get_pixel_addr_img(t_img *img, int x, int y)
 	unsigned long long	x_addr;
 	unsigned long long	y_addr;
 
-	if (img && img->addr)
+	if (img && img->addr && 0 <= x && x <= img->width && 0 <= y && y <= img->height)
 	{
 		y_addr = y * img->line_length;
 		x_addr = x * img->bits_per_pixel / 8;
 		color_addr = (unsigned long long)img->addr + y_addr + x_addr;
 		return ((char *)color_addr);
+	}
+	return (NULL);
+}
+
+static t_img	*file_to_img(t_img *img, char *file_name, void *mlx_ptr)
+{
+	if (img)
+	{
+		img->img_ptr = mlx_xpm_file_to_image(mlx_ptr, file_name, \
+									&img->width, &img->height);
+		if (img->img_ptr)
+			return (img);
+	}
+	return (NULL);
+}
+
+static t_img	*get_data_img_addr(t_img *img)
+{
+	if (img && img->img_ptr)
+	{
+		img->addr = mlx_get_data_addr(img->img_ptr, \
+				&img->bits_per_pixel, &img->line_length, &img->endian);
+		if (img->addr)
+			return (img);
 	}
 	return (NULL);
 }

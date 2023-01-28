@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:15:15 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/25 15:43:18 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/28 17:15:22 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 
 static int	is_str_digit(char *str);
 static int	is_valid_type_color_info(char **nums);
-static void	if_valid_type_save_color(char *info_line, unsigned int *save_destination);
+static void	if_valid_type_save_color(char *info_line, \
+									unsigned int *save_destination);
 
 void	init_type_info_f(t_textures_info *textures_info, char *line)
 {
@@ -68,12 +69,14 @@ static int	is_str_digit(char *str)
 static int	is_valid_type_color_info(char **nums)
 {
 	if (nums && nums[0] && nums[1] && nums[2] && nums[3] == NULL \
-		&& is_str_digit(nums[0]) && is_str_digit(nums[1]) && is_str_digit(nums[2]))
+		&& is_str_digit(nums[0]) && is_str_digit(nums[1]) \
+									&& is_str_digit(nums[2]))
 		return (TRUE);
 	return (FALSE);
 }
 
-static void	if_valid_type_save_color(char *info_line, unsigned int *save_destination)
+static void	if_valid_type_save_color(char *info_line, \
+										unsigned int *save_destination)
 {
 	char	**nums;
 	int		r;
@@ -89,9 +92,9 @@ static void	if_valid_type_save_color(char *info_line, unsigned int *save_destina
 		if (r <= 255 && g <= 255 && b <= 255)
 			*save_destination = make_color(0x00, r, g, b);
 		else
-			exit_with_error("wrong color range");
+			exit_with_error("wrong color range error");
 	}
 	else
-		exit_with_error("wrong color info");
+		exit_with_error("wrong color info error");
 	free_ft_split(nums);
 }
