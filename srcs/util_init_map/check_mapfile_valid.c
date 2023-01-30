@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:39:55 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/28 19:40:05 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:00:18 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	classify_moveable_space(char map_data)
 	if (map_data == 'N' || map_data == 'S' \
 			|| map_data == 'E' || map_data == 'W')
 		return (2);
-	else if (map_data == '0')
+	else if (map_data == '0' || map_data == '2')
 		return (1);
 	return (0);
 }

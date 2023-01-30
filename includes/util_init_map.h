@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:12:25 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/28 17:10:26 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:31:11 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void			init_type_info_no(t_textures_info *textures_fname, char *line);
 void			init_type_info_so(t_textures_info *textures_fname, char *line);
 void			init_type_info_ea(t_textures_info *textures_fname, char *line);
 void			init_type_info_we(t_textures_info *textures_fname, char *line);
+void			init_type_info_do(t_textures_info *textures_info, char *line);
 
 void			init_type_info_f(t_textures_info *textures_info, char *line);
 void			init_type_info_c(t_textures_info *textures_info, char *line);

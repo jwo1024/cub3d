@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:57:44 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/28 17:21:17 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:30:52 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,19 @@ void	init_type_info_we(t_textures_info *textures_info, char *line)
 	}
 	else
 		exit_with_error("identifier error WE");
+}
+
+void	init_type_info_do(t_textures_info *textures_info, char *line)
+{
+	char	*info_line;
+
+	if (textures_info->wall_do_file_name == NULL)
+	{
+		info_line = get_info_line(line, 2);
+		textures_info->wall_do_file_name = info_line;
+	}
+	else
+		exit_with_error("identifier error DO");
 }
 
 char	*get_info_line(char *line, int start_num)

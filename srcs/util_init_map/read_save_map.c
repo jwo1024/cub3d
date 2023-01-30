@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 21:00:21 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/28 15:56:11 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:33:51 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	is_info_line(char *line)
 	if (is_type_identifier(line, "NO") || is_type_identifier(line, "EA") \
 		|| is_type_identifier(line, "WE") || is_type_identifier(line, "SO") \
 		|| is_type_identifier(line, "C") || is_type_identifier(line, "F") \
-		|| is_empty_line(line))
+		|| is_type_identifier(line, "DO") || is_empty_line(line))
 		return (TRUE);
 	return (FALSE);
 }

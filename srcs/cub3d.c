@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:58:05 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/28 17:48:14 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 17:50:25 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,10 @@ int	main(int argc, char *argv[])
 	if (argc == 2)
 	{
 		init_map(&info, argv[1]);
-
 		check_valid_map(&info);
 		init_mlx_win(&info);
 		init_imgs(&info);
 		init_minimap_img(&info, &info.map);
-
 	}
 	else
 		exit_with_error("argc error");
@@ -55,10 +53,8 @@ int	main(int argc, char *argv[])
 	printf("3> map\n");
 	for (unsigned int i = 0; i < info.map.height ; i++)
 		printf("%s@\n", info.map.data[i]);
-	// printf("4> %f %f \n%f %f \n%f %f\n", info.player.dir.x, info.player.dir_y, \
-	// info.player.plane.x, info.player.plane_y, info.player.pos.x, info.player.pos.y);
-//	system("leaks cub3D");
 	mlx_hook(info.window, 2, 0, &key_pressed, &info);
+	mlx_key_hook(info.window, &key_pressed_space, &info);
 	mlx_loop_hook(info.mlx, &ray_loop, &info);
 	mlx_loop(info.mlx);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:44:21 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/28 17:22:46 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:47:37 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	check_line(char *line, t_cub3d_info *info)
 		init_type_info_we(textures_fname, line);
 	else if (is_type_identifier(line, "SO"))
 		init_type_info_so(textures_fname, line);
+	else if (is_type_identifier(line, "DO"))
+		init_type_info_do(textures_fname, line);
 	else if (is_type_identifier(line, "C"))
 		init_type_info_c(textures_fname, line);
 	else if (is_type_identifier(line, "F"))
@@ -93,7 +95,7 @@ int	is_empty_line(char *line)
 
 static int	is_all_info(int save_info_cnt)
 {
-	if (save_info_cnt == 6)
+	if (save_info_cnt == 7)
 		return (TRUE);
 	return (FALSE);
 }

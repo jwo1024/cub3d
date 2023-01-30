@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:29:40 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/28 18:49:44 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:24:52 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ char	*get_pixel_addr_img(t_img *img, int x, int y)
 	unsigned long long	x_addr;
 	unsigned long long	y_addr;
 
-	if (img && img->addr && 0 <= x && x <= img->width && 0 <= y && y <= img->height)
+	if (img && img->addr && 0 <= x && x < img->width && 0 <= y \
+													&& y < img->height)
 	{
 		y_addr = y * img->line_length;
 		x_addr = x * img->bits_per_pixel / 8;

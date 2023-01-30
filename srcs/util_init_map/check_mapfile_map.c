@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:22:42 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/28 17:18:50 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:41:13 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_mapfile_map(int fd, t_cub3d_info *info)
 	char			*line;
 
 	map = &info->map;
-	map->width = 0; // 나중에 빼놓기
+	map->width = 0;
 	height = 0;
 	width = 0;
 	line = skip_empty_line(fd);
@@ -72,7 +72,7 @@ static unsigned int	check_map_width(char *line)
 int	is_valid_char(char c)
 {
 	if (c == '0' || c == '1' || c == 'N' || c == 'S' || \
-	c == 'E' || c == 'W' || c == ' ' || c == '\n')
+	c == 'E' || c == 'W' || c == ' ' || c == '2' || c == '\n')
 		return (TRUE);
 	return (FALSE);
 }

@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 19:41:38 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/28 16:04:40 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:00:48 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,3 @@ void	destroy_window(t_cub3d_info *info)
 	if (info->window)
 		mlx_destroy_window(info->mlx, info->window);
 }
-
-// mlx_new_image() ?

@@ -6,15 +6,18 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 18:00:35 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/28 15:51:24 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:47:26 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"ray_cast.h"
 #include	"mlx.h"
 #include	"util_action.h"
+#include	<math.h>
 #include	<stdio.h>
 #include	"cub3d.h"
+
+static double	get_ratio(t_cub3d_info *info, t_ray_info *ray_info);
 
 int	ray_loop(t_cub3d_info *info)
 {
@@ -45,7 +48,9 @@ void	calc_wall_height(t_cub3d_info *info, t_ray_info *ray_info)
 void	ver_line_each_side(t_cub3d_info *info, t_ray_info *ray_info, \
 												t_vector *screen)
 {
-	if (ray_info->is_side == TRUE)
+	if (ray_info->is_door == TRUE)
+		ver_line(info, ray_info, screen, &info->textures.wall_do);
+	else if (ray_info->is_side == TRUE)
 	{
 		if (ray_info->ray_move_dir.y > 0)
 			ver_line(info, ray_info, screen, &info->textures.wall_so);
@@ -56,7 +61,45 @@ void	ver_line_each_side(t_cub3d_info *info, t_ray_info *ray_info, \
 	{
 		if (ray_info->ray_move_dir.x < 0)
 			ver_line(info, ray_info, screen, &info->textures.wall_ea);
-		if (ray_info->ray_move_dir.x > 0)
+		else if (ray_info->ray_move_dir.x > 0)
 			ver_line(info, ray_info, screen, &info->textures.wall_we);
 	}
+}
+
+void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen, t_img *texture)
+{
+	char		*dest_addr;
+	char		*src_addr;
+	t_vector	img;
+	double		ratio;
+
+	ratio = get_ratio(info, ray_info);
+	img.x = (int)(ratio * (double)texture->width);
+	screen->y = ray_info->draw_start;
+	while (screen->y < ray_info->draw_end)
+	{
+		if (ray_info->wall_height > SCREEN_HEIGHT)
+			img.y = ((double)texture->height) / ray_info->wall_height * ((ray_info->wall_height - SCREEN_HEIGHT) / 2 + screen->y);
+		else
+			img.y = (screen->y - (double)ray_info->draw_start) / ray_info->wall_height * texture->height;
+		dest_addr = get_pixel_addr_img(&info->textures.background, screen->x, screen->y);
+		src_addr = get_pixel_addr_img(texture, img.x, img.y);
+		*(unsigned int *)dest_addr = *(unsigned int *)src_addr;
+		screen->y++;
+	}
+}
+
+static double	get_ratio(t_cub3d_info *info, t_ray_info *ray_info)
+{
+	double		ratio;
+
+	if (ray_info->is_side == TRUE)
+		ratio = info->player.pos.x + ray_info->wall_dist * ray_info->raydir.x;
+	else
+		ratio = info->player.pos.y + ray_info->wall_dist * ray_info->raydir.y;
+	ratio -= floor(ratio);
+	if ((ray_info->is_side == TRUE && ray_info->ray_move_dir.y < 0) \
+		|| (ray_info->is_side == FALSE && ray_info->ray_move_dir.x > 0))
+		ratio = 1 - ratio;
+	return (ratio);
 }

@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:36:42 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/28 16:44:40 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:54:42 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_ray_info
 	t_vector	first_dist;
 	t_vector	second_dist;
 	int			is_side;
+	int			is_door;
 	int			draw_start;
 	int			draw_end;
 	double		camera_x;
@@ -37,5 +38,8 @@ void	ver_line_each_side(t_cub3d_info *info, t_ray_info *ray_info, \
 														t_vector *screen);
 void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen, \
 															t_img *texture);
+void	init_ray_info(t_cub3d_info *info, t_ray_info *ray_info, int x);
+void	calc_first_ray_dist(t_cub3d_info *info, t_ray_info *ray_info);
+void	check_ray_hit(t_cub3d_info *info, t_ray_info *ray_info);
 
 #endif

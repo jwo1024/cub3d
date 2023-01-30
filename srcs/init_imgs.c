@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:32:32 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/28 16:04:38 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:47:59 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static void	init_textures_imgs(t_cub3d_info *info)
 							info->textures_info.wall_so_file_name);
 	get_xpm_data_from_file(info->mlx, &info->textures.wall_we, \
 							info->textures_info.wall_we_file_name);
+	get_xpm_data_from_file(info->mlx, &info->textures.wall_do, \
+							info->textures_info.wall_do_file_name);
 }
 
 static void	get_xpm_data_from_file(void *mlx, t_img *img, char *file_name)

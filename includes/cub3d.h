@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:01:40 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/28 18:38:52 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:38:21 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_textures_img{
 	t_img	wall_we;
 	t_img	wall_so;
 	t_img	wall_no;
+	t_img	wall_do;
 	t_img	ceiling;
 	t_img	floor;
 }	t_textures_img;
@@ -45,9 +46,19 @@ typedef struct s_textures_info{ // textures_init_infos
 	char			*wall_we_file_name;
 	char			*wall_so_file_name;
 	char			*wall_no_file_name;
+	char			*wall_do_file_name;
 	unsigned int	ceiling_color;
 	unsigned int	floor_color;
 }	t_textures_info;
+
+typedef struct s_minimap_info{
+	int				block_size;
+	unsigned int	floor_color;
+	unsigned int	wall_color;
+	unsigned int	door_color;
+	unsigned int	empty_color;
+	unsigned int	player_color;
+}	t_minimap_info;
 
 typedef struct s_map{
 	char			**data;
@@ -75,6 +86,7 @@ typedef struct s_cub3d_info{
 	t_player				player;
 	t_textures_img			textures;
 	t_textures_info			textures_info;
+	t_minimap_info			minimap_info;
 }	t_cub3d_info;
 
 #endif
