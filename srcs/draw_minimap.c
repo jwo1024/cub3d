@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 18:00:16 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/30 18:40:21 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:35:09 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static void	draw_minimap_map(t_cub3d_info *info, t_vector *background, \
 {
 	char	*bg_addr;
 	char	*mini_addr;
+	char	*minimap_addr;
 	int		x;
 	int		y;
 
@@ -66,12 +67,19 @@ static void	draw_minimap_map(t_cub3d_info *info, t_vector *background, \
 		{
 			bg_addr = get_pixel_addr_img(&info->textures.background, \
 										background->x + x, background->y + y);
-			mini_addr = get_pixel_addr_img(&info->textures.minimap, \
+			minimap_addr = get_pixel_addr_img(&info->textures.minimap, x, y); //
+			mini_addr = get_pixel_addr_img(&info->textures.full_minimap, \
 									mini_pos->x + x, mini_pos->y + y);
 			if (bg_addr && mini_addr == NULL)
+			{
+				*(unsigned int *)minimap_addr = info->minimap_info.empty_color;
 				*(unsigned int *)bg_addr = info->minimap_info.empty_color;
+			}
 			else if (bg_addr)
+			{
+				*(unsigned int *)minimap_addr = *(unsigned int *)mini_addr;
 				*(unsigned int *)bg_addr = *(unsigned int *)mini_addr;
+			}
 			++x;
 		}
 		++y;
@@ -85,6 +93,7 @@ static void	draw_minimap_player(t_cub3d_info *info, t_vector *background, \
 	int				y;
 	unsigned int	color;
 	char			*background_addr;
+	char			*minimap_addr;
 
 	color = info->minimap_info.player_color;
 	y = 0;
@@ -93,11 +102,12 @@ static void	draw_minimap_player(t_cub3d_info *info, t_vector *background, \
 		x = 0;
 		while (x < 3)
 		{
+			minimap_addr = get_pixel_addr_img(&info->textures.minimap, mini_size->x / 2 + x, mini_size->y / 2 + y);
 			background_addr = get_pixel_addr_img(&info->textures.background, \
 										background->x + mini_size->x / 2 + x, \
 										background->y + mini_size->y / 2 + y);
-			if (background_addr)
-				*(unsigned int *)background_addr = color;
+			*(unsigned int *)background_addr = color;
+			*(unsigned int *)minimap_addr = color;
 			x++;
 		}
 		y++;

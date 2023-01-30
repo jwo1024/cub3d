@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   break_door_action.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:08:56 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/30 17:33:11 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 20:32:10 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,21 @@ static void	break_door(t_cub3d_info *info)
 
 static void	upadate_minimap(t_cub3d_info *info, t_vector ray)
 {
-	int			block_size; // 통일된 데이터 저장장소가 있으면 좋겠다. minimap 색깔 등..
 	t_vector	pos;
 	t_vector	end;
 	char		*addr;
 
-	block_size = 10;
-	pos.x = (int)ray.x * block_size;
-	pos.y = (int)ray.y * block_size;
-	end.x = pos.x + block_size;
-	end.y = pos.y + block_size;
+	pos.x = (int)ray.x * info->minimap_info.block_size;
+	pos.y = (int)ray.y * info->minimap_info.block_size;
+	end.x = pos.x + info->minimap_info.block_size;
+	end.y = pos.y + info->minimap_info.block_size;
 	while (pos.y < end.y)
 	{
-		pos.x = (int)ray.x * block_size;
+		pos.x = (int)ray.x * info->minimap_info.block_size;
 		while (pos.x < end.x)
 		{
-			addr = get_pixel_addr_img(&info->textures.minimap, pos.x, pos.y);
-			*(unsigned int *)addr = 0X00669999;
+			addr = get_pixel_addr_img(&info->textures.full_minimap, pos.x, pos.y);
+			*(unsigned int *)addr = info->minimap_info.floor_color;
 			++pos.x;
 		}
 		++pos.y;

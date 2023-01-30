@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 18:00:35 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/30 18:47:26 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/30 20:49:08 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,15 @@ void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen, t_img 
 	double		ratio;
 
 	ratio = get_ratio(info, ray_info);
-	img.x = (int)(ratio * (double)texture->width);
+	img.x = (int)(ratio * texture->width);
 	screen->y = ray_info->draw_start;
 	while (screen->y < ray_info->draw_end)
 	{
+		// 이미지 울렁거림... ... ...
 		if (ray_info->wall_height > SCREEN_HEIGHT)
 			img.y = ((double)texture->height) / ray_info->wall_height * ((ray_info->wall_height - SCREEN_HEIGHT) / 2 + screen->y);
 		else
-			img.y = (screen->y - (double)ray_info->draw_start) / ray_info->wall_height * texture->height;
+			img.y = (int)((screen->y - ray_info->draw_start) / ray_info->wall_height * texture->height);
 		dest_addr = get_pixel_addr_img(&info->textures.background, screen->x, screen->y);
 		src_addr = get_pixel_addr_img(texture, img.x, img.y);
 		*(unsigned int *)dest_addr = *(unsigned int *)src_addr;
