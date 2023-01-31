@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_rotate_player.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:12:59 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/30 18:47:04 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/31 18:01:44 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,8 @@
 #include	<math.h>
 #include	"stdio.h"
 
-static int	classify_moveable_space(char map_data);
-
-t_vector	rotate_vector(t_vector vector, double rot_speed)
-{
-	double		new_x;
-	double		new_y;
-
-	new_x = vector.x * cos(rot_speed) - vector.y * sin(rot_speed);
-	new_y = vector.x * sin(rot_speed) + vector.y * cos(rot_speed);
-	vector.x = new_x;
-	vector.y = new_y;
-	return (vector);
-}
+static int		classify_moveable_space(char map_data);
+static t_vector	rotate_vector(t_vector vector, double rot_speed);
 
 void	move_player(t_cub3d_info *info, double speed)
 {
@@ -65,8 +54,6 @@ void	move_player_side(t_cub3d_info *info, double speed)
 
 void	rotate_player(t_cub3d_info *info, double speed)
 {
-	// x = dirx * cos(-speed) - diry * sin(-speed)
-	// y = dirx * sin(-speed) + diry * cos(-speed)
 	t_player	*player;
 	double		new_x;
 	double		new_y;
@@ -84,6 +71,18 @@ void	rotate_player(t_cub3d_info *info, double speed)
 		player->plane.x = new_x;
 		player->plane.y = new_y;
 	}
+}
+
+static t_vector	rotate_vector(t_vector vector, double rot_speed)
+{
+	double		new_x;
+	double		new_y;
+
+	new_x = vector.x * cos(rot_speed) - vector.y * sin(rot_speed);
+	new_y = vector.x * sin(rot_speed) + vector.y * cos(rot_speed);
+	vector.x = new_x;
+	vector.y = new_y;
+	return (vector);
 }
 
 static int	classify_moveable_space(char map_data)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 15:27:03 by jiwolee           #+#    #+#              #
-#    Updated: 2023/01/30 18:11:30 by jaeyjeon         ###   ########.fr        #
+#    Updated: 2023/01/31 16:39:37 by jiwolee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,27 +24,27 @@ HEADER		= ./includes
 INCLUDES	= -I$(HEADER) -I$(MLX_DIR) -I$(LIBFT_DIR)
 
 SRCS_1		= ./srcs/cub3d.c \
-			  ./srcs/util_img.c \
-			  ./srcs/util_error.c \
-			  ./srcs/util_init_map/util_init_map.c\
-			  ./srcs/util_init_map/check_mapfile_info.c \
-			  ./srcs/util_init_map/check_mapfile_map.c \
-			  ./srcs/util_init_map/init_type_info1.c \
-			  ./srcs/util_init_map/init_type_info2.c \
-			  ./srcs/util_init_map/read_save_map.c \
-			  ./srcs/util_color.c \
-			  ./srcs/util_safe_libft.c \
-			  ./srcs/util_init_map/check_mapfile_valid.c \
-			  ./srcs/init_mlx.c \
-			  ./srcs/init_imgs.c \
+			  ./srcs/utils/util_img.c \
+			  ./srcs/utils/util_error.c \
+			  ./srcs/init_map/util_init_map.c\
+			  ./srcs/init_map/check_mapfile_info.c \
+			  ./srcs/init_map/check_mapfile_map.c \
+			  ./srcs/init_map/init_type_info1.c \
+			  ./srcs/init_map/init_type_info2.c \
+			  ./srcs/init_map/read_save_map.c \
+			  ./srcs/init_map/check_mapfile_valid.c \
+			  ./srcs/init/init_mlx.c \
+			  ./srcs/init/init_imgs.c \
 			  ./srcs/ray_cast/ray_cast.c \
 			  ./srcs/ray_cast/ray_cast2.c \
+			  ./srcs/utils/util_color.c \
+			  ./srcs/utils/util_safe_libft.c \
 			  ./srcs/util_action/get_key_action.c \
 			  ./srcs/util_action/move_rotate_player.c \
 			  ./srcs/util_action/get_mouse_action.c \
 			  ./srcs/util_action/break_door_action.c \
-			  ./srcs/make_minimap_img.c \
-			  ./srcs/draw_minimap.c
+			  ./srcs/minimap/init_minimap_img.c \
+			  ./srcs/minimap/draw_minimap.c
 
 SRCS_2		= ./gnl_for_cub3d/get_next_line.c\
 			  ./gnl_for_cub3d/get_next_line_utils.c

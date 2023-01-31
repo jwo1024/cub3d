@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_imgs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:32:32 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/30 16:47:59 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/31 17:50:02 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static void	new_background_img(void *mlx, t_img *img)
 	img->width = SCREEN_WIDTH;
 	img->height = SCREEN_HEIGHT;
 	if (img->img_ptr == NULL)
-		exit_with_error("background img error ");; // img 만들기 실패
+		exit_with_error("background img error "); // img 만들기 실패
 	img->addr = mlx_get_data_addr \
 		(img->img_ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
 }

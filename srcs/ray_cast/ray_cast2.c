@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 18:00:35 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/30 20:49:08 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/31 17:48:53 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,16 @@ void	ver_line_each_side(t_cub3d_info *info, t_ray_info *ray_info, \
 	}
 }
 
-void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen, t_img *texture)
+void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, \
+											t_vector *screen, t_img *texture)
 {
 	char		*dest_addr;
 	char		*src_addr;
 	t_vector	img;
 	double		ratio;
+	int			x;
 
+	x = SCREEN_WIDTH - 1 - screen->x;
 	ratio = get_ratio(info, ray_info);
 	img.x = (int)(ratio * texture->width);
 	screen->y = ray_info->draw_start;
@@ -80,10 +83,13 @@ void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen, t_img 
 	{
 		// 이미지 울렁거림... ... ...
 		if (ray_info->wall_height > SCREEN_HEIGHT)
-			img.y = ((double)texture->height) / ray_info->wall_height * ((ray_info->wall_height - SCREEN_HEIGHT) / 2 + screen->y);
+			img.y = ((double)texture->height) / ray_info->wall_height \
+					* ((ray_info->wall_height - SCREEN_HEIGHT) / 2 + screen->y);
 		else
-			img.y = (int)((screen->y - ray_info->draw_start) / ray_info->wall_height * texture->height);
-		dest_addr = get_pixel_addr_img(&info->textures.background, screen->x, screen->y);
+			img.y = (int)((screen->y - ray_info->draw_start) \
+							/ ray_info->wall_height * texture->height);
+		dest_addr = get_pixel_addr_img(&info->textures.background, x, \
+															screen->y);
 		src_addr = get_pixel_addr_img(texture, img.x, img.y);
 		*(unsigned int *)dest_addr = *(unsigned int *)src_addr;
 		screen->y++;

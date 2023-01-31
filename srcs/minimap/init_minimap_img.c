@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_full_minimap_img.c                                 :+:      :+:    :+:   */
+/*   init_minimap_img.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 18:07:43 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/30 19:28:01 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/31 17:50:31 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,31 @@ static void			init_minimap_info(t_minimap_info *mini_info);
 static unsigned int	get_wall_color(t_minimap_info *mini_info, char wall_type);
 static void			draw_full_minimap_img(t_minimap_info *mini_info, \
 								t_img *minimap_img, t_map *map, int block_size);
+static t_img		*make_new_img(t_cub3d_info *info, t_img *img, \
+														int width, int height);
 
-t_img	*make_new_img(t_cub3d_info *info, t_img *img, int width, int height)
+int	init_minimap_img(t_cub3d_info *info, t_map *map)
 {
-	img->width = width; // 5px? if int범위 벗어났을때 예외
-	img->height = height;
-	img->img_ptr = mlx_new_image(info->mlx, img->width, img->height);
+	unsigned int	width;
+	unsigned int	height;
 
-	img->addr = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel, \
-										&img->line_length, &img->endian);
-	return (img);
-}
-
-int	init_minimap_img(t_cub3d_info *info, t_map *map) // void
-{
-	t_img	*full_minimap_img;
-	int		block_size;
-
-	init_minimap_info(&info->minimap_info);
-
-	block_size = info->minimap_info.block_size;
-	make_new_img(info, &info->textures.minimap, SCREEN_WIDTH / 10, SCREEN_HEIGHT / 10);
-	full_minimap_img = make_new_img(info, &info->textures.full_minimap, map->width * block_size, map->height *block_size);
-// 여기까지는 new_background_img 랑 겹치기 때문에 새 함수 파서 사용하는 것이 좋을듯
-	draw_full_minimap_img(&info->minimap_info, full_minimap_img, map, block_size);
+	if (info)
+	{
+		init_minimap_info(&info->minimap_info);
+		{
+			width = SCREEN_WIDTH / 10;
+			height = SCREEN_HEIGHT / 10;
+			make_new_img(info, &info->textures.minimap, width, height);
+		}
+		{
+			width = map->width * info->minimap_info.block_size;
+			height = map->height * info->minimap_info.block_size;
+			make_new_img(info, &info->textures.full_minimap, width, height);
+		}
+		draw_full_minimap_img(&info->minimap_info, \
+			&info->textures.full_minimap, map, info->minimap_info.block_size);
+		return (1);
+	}
 	return (0);
 }
 
@@ -74,12 +75,11 @@ static void	draw_full_minimap_img(t_minimap_info *mini_info, \
 		img_x = 0;
 		while (img_x < minimap_img->width)
 		{
-			// 복도 비어있는 공간 벽
 			color = get_wall_color(mini_info, \
 							map->data[img_y / block_size][img_x / block_size]);
 			addr = get_pixel_addr_img(minimap_img, img_x, img_y);
-			*(unsigned int *)addr = color;
-		//	draw_color(minimap_img, color);
+			if (addr)
+				*(unsigned int *)addr = color;
 			img_x++;
 		}
 		img_y++;
@@ -99,4 +99,15 @@ static unsigned int	get_wall_color(t_minimap_info *mini_info, char wall_type)
 	else
 		color = mini_info->floor_color;
 	return (color);
+}
+
+static t_img	*make_new_img(t_cub3d_info *info, t_img *img, \
+														int width, int height)
+{
+	img->width = width;
+	img->height = height;
+	img->img_ptr = mlx_new_image(info->mlx, img->width, img->height);
+	img->addr = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel, \
+										&img->line_length, &img->endian);
+	return (img);
 }

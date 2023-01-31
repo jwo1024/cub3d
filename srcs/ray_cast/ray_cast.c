@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:52:17 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/30 20:29:26 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/31 17:09:37 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ray_cast(t_cub3d_info *info)
 		check_ray_hit(info, &ray_info);
 		calc_wall_height(info, &ray_info);
 		ver_line_each_side(info, &ray_info, &screen);
-		screen.x++;
+		++screen.x;
 	}
 	mlx_put_image_to_window(info->mlx, info->window, \
 							info->textures.background.img_ptr, 0, 0);

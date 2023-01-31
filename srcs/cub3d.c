@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:58:05 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/30 17:50:25 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/01/31 16:04:35 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ int	main(int argc, char *argv[])
 	}
 	else
 		exit_with_error("argc error");
+	
 	printf("1> %d  %d  %X  %X\n", info.map.height, info.map.width, info.textures_info.floor_color, info.textures_info.ceiling_color);
 	printf("2> %s \n %s \n %s \n %s\n", info.textures_info.wall_ea_file_name, info.textures_info.wall_no_file_name, info.textures_info.wall_so_file_name, info.textures_info.wall_we_file_name);
 	printf("3> map\n");
 	for (unsigned int i = 0; i < info.map.height ; i++)
 		printf("%s@\n", info.map.data[i]);
+
 	mlx_hook(info.window, 2, 0, &key_pressed, &info);
 	mlx_key_hook(info.window, &key_pressed_space, &info);
 	mlx_loop_hook(info.mlx, &ray_loop, &info);

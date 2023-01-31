@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:01:40 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/30 19:28:42 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/31 17:00:24 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_vector{
 
 typedef struct s_textures_img{
 	t_img	background;
-	t_img	full_minimap; //entire
+	t_img	full_minimap;
 	t_img	minimap;
 	t_img	wall_ea;
 	t_img	wall_we;
@@ -42,7 +42,7 @@ typedef struct s_textures_img{
 	t_img	floor;
 }	t_textures_img;
 
-typedef struct s_textures_info{ // textures_init_infos
+typedef struct s_textures_info{
 	char			*wall_ea_file_name;
 	char			*wall_we_file_name;
 	char			*wall_so_file_name;
