@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:52:17 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/31 17:09:37 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/01/31 18:58:02 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include	"util_init.h"
 #include	<stdlib.h>
 #include	"minimap.h"
+
 
 void	ray_cast(t_cub3d_info *info)
 {
@@ -87,7 +88,7 @@ void	calc_first_ray_dist(t_cub3d_info *info, t_ray_info *ray_info)
 void	check_ray_hit(t_cub3d_info *info, t_ray_info *ray_info)
 {
 	int	hit;
-	char	*minimap_addr;
+//	char	*minimap_addr;
 
 	hit = FALSE;
 	while (hit == FALSE)
@@ -104,15 +105,14 @@ void	check_ray_hit(t_cub3d_info *info, t_ray_info *ray_info)
 			ray_info->ray.y += ray_info->ray_move_dir.y;
 			ray_info->is_side = TRUE;
 		}
-
+/*
 		// minimap ray 그리기
-		/* 이 안에서 추가적인 ray_cast dda 필요*/
 		int x = (ray_info->ray.x * 10 - (info->player.pos.x * 10 - info->textures.minimap.width / 2));
 		int y = (ray_info->ray.y * 10 - (info->player.pos.y * 10 - info->textures.minimap.height / 2));
 		minimap_addr = get_pixel_addr_img(&info->textures.minimap, x, y);
 		if (minimap_addr)
 			*(unsigned int *)minimap_addr = info->minimap_info.player_color | 0X66000000;
-
+*/
 
 		if (info->map.data[(int)ray_info->ray.y][(int)ray_info->ray.x] == '1')
 			hit = TRUE;
