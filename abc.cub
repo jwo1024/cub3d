@@ -5,15 +5,15 @@ F 091,153,255
 
 
 
-NO       ./asset/ice_wall_1.xpm
+NO       ./asset/north_texture.xpm
 
-EA    ./asset/sword_ground.xpm
+EA    ./asset/east_texture_2.xpm
 
-SO ./asset/fire_ground.xpm
+SO ./asset/south_texture.xpm
 
-WE       ./asset/dino_green.xpm
+WE       ./asset/west_texture.xpm
 
-DO ./asset/box_closed.xpm
+DO ./asset/bungApang.xpm
 
 
     1111111111111111111111

@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:32:32 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/31 17:50:02 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/02 16:05:26 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	init_background_img(t_img *background, \
 {
 	int				x;
 	int				y;
-	char			*pixcel_addr;
+	char			*pixel_addr;
 	unsigned int	color;
 
 	y = 0;
-	pixcel_addr = NULL;
+	pixel_addr = NULL;
 	color = ceiling_color;
 	while (y < background->height)
 	{
@@ -44,9 +44,9 @@ void	init_background_img(t_img *background, \
 			color = floor_color;
 		while (x < background->width)
 		{
-			pixcel_addr = get_pixel_addr_img(background, x, y);
-			if (pixcel_addr)
-				*(unsigned int *)pixcel_addr = color;
+			pixel_addr = get_pixel_addr_img(background, x, y);
+			if (pixel_addr)
+				*(unsigned int *)pixel_addr = color;
 			++x;
 		}
 		++y;

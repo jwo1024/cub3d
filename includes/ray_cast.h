@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:36:42 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/30 16:54:42 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/02/02 20:19:58 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,10 @@ void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, t_vector *screen, \
 void	init_ray_info(t_cub3d_info *info, t_ray_info *ray_info, int x);
 void	calc_first_ray_dist(t_cub3d_info *info, t_ray_info *ray_info);
 void	check_ray_hit(t_cub3d_info *info, t_ray_info *ray_info);
+
+int		is_wall_south_side(t_ray_info *ray_info);
+int		is_wall_north_side(t_ray_info *ray_info);
+int		is_wall_east_side(t_ray_info *ray_info);
+int		is_wall_west_side(t_ray_info *ray_info);
 
 #endif

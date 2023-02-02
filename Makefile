@@ -6,7 +6,7 @@
 #    By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 15:27:03 by jiwolee           #+#    #+#              #
-#    Updated: 2023/01/31 16:39:37 by jiwolee          ###   ########.fr        #
+#    Updated: 2023/02/02 20:32:11 by jiwolee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS_1		= ./srcs/cub3d.c \
 			  ./srcs/init/init_imgs.c \
 			  ./srcs/ray_cast/ray_cast.c \
 			  ./srcs/ray_cast/ray_cast2.c \
+			  ./srcs/ray_cast/check_wall.c\
 			  ./srcs/utils/util_color.c \
 			  ./srcs/utils/util_safe_libft.c \
 			  ./srcs/util_action/get_key_action.c \
@@ -44,7 +45,8 @@ SRCS_1		= ./srcs/cub3d.c \
 			  ./srcs/util_action/get_mouse_action.c \
 			  ./srcs/util_action/break_door_action.c \
 			  ./srcs/minimap/init_minimap_img.c \
-			  ./srcs/minimap/draw_minimap.c
+			  ./srcs/minimap/draw_minimap.c \
+			  ./srcs/minimap/draw_minimap_fov.c
 
 SRCS_2		= ./gnl_for_cub3d/get_next_line.c\
 			  ./gnl_for_cub3d/get_next_line_utils.c

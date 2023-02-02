@@ -6,12 +6,11 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:11:11 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/31 17:43:18 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/02 16:00:45 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
-#include	"mlx.h"
 #include	"util_action.h"
 #include	<stdlib.h>
 

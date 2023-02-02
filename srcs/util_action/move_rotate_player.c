@@ -6,14 +6,13 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:12:59 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/31 18:01:44 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/02 16:00:16 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 #include	"util_action.h"
 #include	<math.h>
-#include	"stdio.h"
 
 static int		classify_moveable_space(char map_data);
 static t_vector	rotate_vector(t_vector vector, double rot_speed);

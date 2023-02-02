@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:58:05 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/31 16:04:35 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/02 15:50:45 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char *argv[])
 	t_cub3d_info	info;
 
 	memset_info(&info);
-	info.mouse = TRUE; // 나중에 위치 수정
+	info.mouse = TRUE;
 	if (argc == 2)
 	{
 		init_map(&info, argv[1]);
