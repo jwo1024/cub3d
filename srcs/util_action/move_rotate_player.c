@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:12:59 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/02/02 16:00:16 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/02 21:03:58 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ void	move_player_side(t_cub3d_info *info, double speed)
 	double		new_y;
 	t_vector	side_dir;
 	double		radian;
+	double		degree;
 
-	radian = 3.141592f / 2.0f; // 각도를 radian으로 구하는 함수가 하나 있으면 좋겟다
+	degree = 90;
+	radian = degree * 3.141592f / 180;
 	side_dir.x = info->player.dir.x;
 	side_dir.y = info->player.dir.y;
 	side_dir = rotate_vector(side_dir, radian);

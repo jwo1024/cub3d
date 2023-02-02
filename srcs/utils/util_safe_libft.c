@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_safe_libft.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:06:59 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/28 15:56:57 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/02/02 21:05:52 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	free_ft_split(char **sptr)
 	}
 }
 
-char	*safe_ft_calloc(size_t count, size_t size)
+void	*safe_ft_calloc(size_t count, size_t size)
 {
 	char	*newstr;
 

@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:08:56 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/30 20:32:10 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/02 20:54:31 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ static void	upadate_minimap(t_cub3d_info *info, t_vector ray)
 		pos.x = (int)ray.x * info->minimap_info.block_size;
 		while (pos.x < end.x)
 		{
-			addr = get_pixel_addr_img(&info->textures.full_minimap, pos.x, pos.y);
+			addr = get_pixel_addr_img(&info->textures.full_minimap, \
+															pos.x, pos.y);
 			*(unsigned int *)addr = info->minimap_info.floor_color;
 			++pos.x;
 		}

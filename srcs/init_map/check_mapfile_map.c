@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_mapfile_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:22:42 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/30 18:41:13 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/02/02 21:03:24 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	check_mapfile_map(int fd, t_cub3d_info *info)
 		if (width > map->width)
 			map->width = width;
 		height++;
-		printf("line: %s  height %d width %d\n", line, height, width);
 		free(line);
 		line = get_next_line(fd);
 	}

@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 18:00:16 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/31 22:14:10 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/02 21:03:05 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ static void	draw_minimap_map(t_cub3d_info *info, \
 				*(unsigned int *)mini_addr = *(unsigned int *)fullmini_addr;
 			++x;
 		}
-		if (x == mini_size->y)
-			printf("y %d ok\n", y);
 		++y;
 	}
 }

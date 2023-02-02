@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 18:00:35 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/02/02 20:38:32 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/02 20:46:59 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 #include	"cub3d.h"
 
 static double	get_ratio(t_cub3d_info *info, t_ray_info *ray_info);
-
-
-void	recursive_draw_line_1(int p, t_vector *start, t_vector *end, t_cub3d_info *info, t_vector *mini);
-void	draw_line(t_cub3d_info *info, t_ray_info *ray_info, int block);
 
 int	ray_loop(t_cub3d_info *info)
 {
@@ -54,7 +50,6 @@ void	ver_line_each_side(t_cub3d_info *info, t_ray_info *ray_info, \
 {
 	if (ray_info->is_door == TRUE)
 		ver_line(info, ray_info, screen, &info->textures.wall_do);
-	/*
 	else if (is_wall_east_side(ray_info) == TRUE)
 		ver_line(info, ray_info, screen, &info->textures.wall_ea);
 	else if (is_wall_west_side(ray_info) == TRUE)
@@ -63,22 +58,6 @@ void	ver_line_each_side(t_cub3d_info *info, t_ray_info *ray_info, \
 		ver_line(info, ray_info, screen, &info->textures.wall_no);
 	else if (is_wall_south_side(ray_info) == TRUE)
 		ver_line(info, ray_info, screen, &info->textures.wall_so);
-	*/
-	else if (ray_info->is_side == TRUE)
-	{
-		if (ray_info->ray_move_dir.y > 0)
-			ver_line(info, ray_info, screen, &info->textures.wall_no);
-		else if (ray_info->ray_move_dir.y < 0)
-			ver_line(info, ray_info, screen, &info->textures.wall_so);
-	}
-	else
-	{
-		if (ray_info->ray_move_dir.x < 0)
-			ver_line(info, ray_info, screen, &info->textures.wall_ea);
-		else if (ray_info->ray_move_dir.x > 0)
-			ver_line(info, ray_info, screen, &info->textures.wall_we);
-	}
-	
 }
 
 void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, \
@@ -96,7 +75,6 @@ void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, \
 	screen->y = ray_info->draw_start;
 	while (screen->y < ray_info->draw_end)
 	{
-		// 이미지 울렁거림... ... ...
 		if (ray_info->wall_height > SCREEN_HEIGHT)
 			img.y = ((double)texture->height) / ray_info->wall_height \
 					* ((ray_info->wall_height - SCREEN_HEIGHT) / 2 + screen->y);

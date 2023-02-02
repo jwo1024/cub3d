@@ -6,31 +6,42 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 20:16:57 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/02/02 20:33:43 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/02 21:59:44 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"cub3d.h"
 #include	"ray_cast.h"
 
+typedef	struct s_bresenham_info
+{
+	int	start_x;
+	int	start_y;
+	int	end_x;
+	int	end_y;
+	int	dx;
+	int	dy;
+	int	fraction;
+}	t_bresenham_info;
+
+
 void	draw_minimap_fov(t_cub3d_info *info, t_ray_info *ray_info, int block)
 {
-	int	mini_x;
-	int	mini_y;
+	int	fullmini_x;
+	int	fullmini_y;
 
-	mini_x = (info->player.pos.x * 10 - (info->textures.minimap.width / 2));
-	mini_y = (info->player.pos.y * 10 - (info->textures.minimap.height / 2));
+	fullmini_x = (info->player.pos.x * 10 - (info->textures.minimap.width / 2));
+	fullmini_y = (info->player.pos.y * 10 - (info->textures.minimap.height / 2));
 
 	int	start_x;
 	int	start_y;
 	int	end_x;
 	int	end_y;
 
-	start_x = (int)(info->player.pos.x * 10.0) - mini_x;
-	start_y = (int)(info->player.pos.y * 10.0) - mini_y;
-	end_x = (int)(ray_info->ray.x * 10.0) + block - mini_x;
-	end_y = (int)(ray_info->ray.y * 10.0) + block - mini_y;
-
+	start_x = (int)(info->player.pos.x * 10.0) - fullmini_x;
+	start_y = (int)(info->player.pos.y * 10.0) - fullmini_y;
+	end_x = (int)(ray_info->ray.x * 10.0) + block - fullmini_x;
+	end_y = (int)(ray_info->ray.y * 10.0) + block - fullmini_y;
 
 	// (int start_x, int start_y int end_x, int end_y)
 
@@ -53,7 +64,7 @@ void	draw_minimap_fov(t_cub3d_info *info, t_ray_info *ray_info, int block)
 		dx = -dx;
 		stepx = -1;
 	}
-	dy <<= 1;
+	dy <<= 1; /// 2배
 	dx <<= 1;
 
 //	int	fraction;
@@ -100,8 +111,8 @@ void	draw_minimap_fov(t_cub3d_info *info, t_ray_info *ray_info, int block)
 				*(unsigned *)addr =  0XFFFFFF;
 		}
 	}
-	
 }
+
 /*
 int	draw_line_2(int start_x, int start_y, int end_x, int end_y)
 {

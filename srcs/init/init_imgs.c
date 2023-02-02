@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:32:32 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/02/02 16:05:26 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/02 20:51:13 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	init_textures_imgs(t_cub3d_info *info)
 	textures_img = &info->textures;
 	textures_info = &info->textures_info;
 	get_xpm_data_from_file(info->mlx, &info->textures.wall_ea, \
-							info->textures_info.wall_ea_file_name); // width ? height ? init?
+							info->textures_info.wall_ea_file_name);
 	get_xpm_data_from_file(info->mlx, &info->textures.wall_no, \
 							info->textures_info.wall_no_file_name);
 	get_xpm_data_from_file(info->mlx, &info->textures.wall_so, \
@@ -79,7 +79,7 @@ static void	get_xpm_data_from_file(void *mlx, t_img *img, char *file_name)
 	img->img_ptr = \
 		mlx_xpm_file_to_image(mlx, file_name, &img->width, &img->height);
 	if (img->img_ptr == NULL)
-		exit_with_error("invalid file error"); // 잘못된 file name 혹은 불러오기 실패
+		exit_with_error("invalid file error");
 	img->addr = mlx_get_data_addr \
 		(img->img_ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
 }
@@ -88,11 +88,11 @@ static void	new_background_img(void *mlx, t_img *img)
 {
 	if (!img || !mlx || img->img_ptr)
 		;
-	img->img_ptr = mlx_new_image(mlx, SCREEN_WIDTH, SCREEN_HEIGHT); // 64?
+	img->img_ptr = mlx_new_image(mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	img->width = SCREEN_WIDTH;
 	img->height = SCREEN_HEIGHT;
 	if (img->img_ptr == NULL)
-		exit_with_error("background img error "); // img 만들기 실패
+		exit_with_error("background img error ");
 	img->addr = mlx_get_data_addr \
 		(img->img_ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
 }
