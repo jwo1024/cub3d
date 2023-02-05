@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+         #
+#    By: jiwolee <jiwolee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 15:27:03 by jiwolee           #+#    #+#              #
-#    Updated: 2023/02/02 20:32:11 by jiwolee          ###   ########.fr        #
+#    Updated: 2023/02/05 22:12:14 by jiwolee          ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRCS_1		= ./srcs/cub3d.c \
 			  ./srcs/util_action/break_door_action.c \
 			  ./srcs/minimap/init_minimap_img.c \
 			  ./srcs/minimap/draw_minimap.c \
-			  ./srcs/minimap/draw_minimap_fov.c
+			  ./srcs/minimap/draw_fov_on_minimap.c
 
 SRCS_2		= ./gnl_for_cub3d/get_next_line.c\
 			  ./gnl_for_cub3d/get_next_line_utils.c
