@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:08:56 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/02/06 15:59:25 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/06 16:18:13 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include	"ray_cast.h"
 
 static void	break_door(t_cub3d_info *info);
-static void	upadate_minimap(t_cub3d_info *info, t_vector ray);
+static void	upadate_minimap(t_cub3d_info *info, t_vector ray, \
+															unsigned int color);
 static void	check_ray_hit_door(t_cub3d_info *info, t_ray_info *ray_info);
 
 int	key_pressed_space(int key, t_cub3d_info *info)
@@ -38,17 +39,20 @@ static void	break_door(t_cub3d_info *info)
 		if (info->map.data[(int)ray_info.ray.y][(int)ray_info.ray.x] == '2')
 		{
 			info->map.data[(int)ray_info.ray.y][(int)ray_info.ray.x] = '3';
-			upadate_minimap(info, ray_info.ray);
+			upadate_minimap(info, ray_info.ray, \
+										info->minimap_info.opened_door_color);
+			return ;
 		}
-		else if (info->map.data[(int)ray_info.ray.y][(int)ray_info.ray.x] == '3')
+		if (info->map.data[(int)ray_info.ray.y][(int)ray_info.ray.x] == '3')
 		{
 			info->map.data[(int)ray_info.ray.y][(int)ray_info.ray.x] = '2';
-			upadate_minimap(info, ray_info.ray);
+			upadate_minimap(info, ray_info.ray, info->minimap_info.door_color);
 		}
 	}
 }
 
-void	upadate_minimap(t_cub3d_info *info, t_vector ray) //
+static void	upadate_minimap(t_cub3d_info *info, t_vector ray, \
+															unsigned int color)
 {
 	t_vector	pos;
 	t_vector	end;
@@ -65,7 +69,7 @@ void	upadate_minimap(t_cub3d_info *info, t_vector ray) //
 		{
 			addr = get_pixel_addr_img(&info->textures.full_minimap, \
 															pos.x, pos.y);
-			*(unsigned int *)addr = info->minimap_info.floor_color;
+			*(unsigned int *)addr = color;
 			++pos.x;
 		}
 		++pos.y;
@@ -83,19 +87,19 @@ static void	check_ray_hit_door(t_cub3d_info *info, t_ray_info *ray_info)
 		{
 			ray_info->first_dist.x += ray_info->second_dist.x;
 			ray_info->ray.x += ray_info->ray_move_dir.x;
-			ray_info->is_side = FALSE;
 		}
 		else
 		{
 			ray_info->first_dist.y += ray_info->second_dist.y;
 			ray_info->ray.y += ray_info->ray_move_dir.y;
-			ray_info->is_side = TRUE;
 		}
 		if (info->map.data[(int)ray_info->ray.y][(int)ray_info->ray.x] == '1')
 			hit = TRUE;
-		else if (info->map.data[(int)ray_info->ray.y][(int)ray_info->ray.x] == '2')
+		else if \
+			(info->map.data[(int)ray_info->ray.y][(int)ray_info->ray.x] == '2')
 			hit = TRUE;
-		else if (info->map.data[(int)ray_info->ray.y][(int)ray_info->ray.x] == '3')
+		else if (\
+			info->map.data[(int)ray_info->ray.y][(int)ray_info->ray.x] == '3')
 			hit = TRUE;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 20:16:57 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/02/06 15:02:09 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/06 16:23:46 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	draw_line_base_y(t_bresenham_info *b_info, t_cub3d_info *cub_info);
 
 void	draw_fov_on_minimap(t_cub3d_info *cub_info, t_ray_info *ray_info)
 {
-	t_bresenham_info b_info;
+	t_bresenham_info	b_info;
 
 	if (cub_info && ray_info)
 	{
