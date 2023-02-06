@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:01:40 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/02/02 20:40:02 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/06 15:51:14 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_minimap_info{
 	unsigned int	floor_color;
 	unsigned int	wall_color;
 	unsigned int	door_color;
+	unsigned int	opened_door_color;
 	unsigned int	empty_color;
 	unsigned int	player_color;
 }	t_minimap_info;

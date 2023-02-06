@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 18:07:43 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/31 17:50:31 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/06 16:02:27 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	init_minimap_info(t_minimap_info *mini_info)
 		mini_info->floor_color = 0X00669999;
 		mini_info->wall_color = 0X00003333;
 		mini_info->door_color = 0X00FFFF00;
+		mini_info->opened_door_color = 0X0000CCFF;
 		mini_info->empty_color = 0X00CCFFFF;
 		mini_info->player_color = 0x00CC0000;
 	}
@@ -96,6 +97,8 @@ static unsigned int	get_wall_color(t_minimap_info *mini_info, char wall_type)
 		color = mini_info->empty_color;
 	else if (wall_type == '2')
 		color = mini_info->door_color;
+	else if (wall_type == '3')
+		color = mini_info->opened_door_color;
 	else
 		color = mini_info->floor_color;
 	return (color);

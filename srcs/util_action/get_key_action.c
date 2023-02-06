@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:11:11 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/02/02 16:00:45 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/06 15:31:20 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,10 @@ int	key_pressed(int key, t_cub3d_info *info)
 	else if (key == KEY_ESC)
 		exit(0);
 	return (0);
+}
+
+int	exit_pressed(int key)
+{
+	(void)key;
+	exit(0);
 }

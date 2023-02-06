@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_fov_on_minimap.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 20:16:57 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/02/06 00:28:06 by jiwolee          ###   ########seoul.kr  */
+/*   Updated: 2023/02/06 15:02:09 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,11 @@ static void	draw_line_base_x(t_bresenham_info *b_info, t_cub3d_info *cub_info)
 		b_info->start_x += b_info->stepx;
 		b_info->fraction += b_info->dy;
 		addr = get_pixel_addr_img(&cub_info->textures.minimap, \
-												b_info->start_x, b_info->start_y);
-	//	if (addr && (*(unsigned int *)addr == cub_info->minimap_info.wall_color \
-	//			|| *(unsigned int *)addr == cub_info->minimap_info.door_color))
-	//		break ;
+											b_info->start_x, b_info->start_y);
 		if (addr)
-			*(unsigned *)addr =  0X00FFFFFF;
+			*(unsigned *)addr = 0X00FFFFFF;
 		else
-			break;
+			break ;
 	}
 }
 
@@ -76,24 +73,20 @@ static void	draw_line_base_y(t_bresenham_info *b_info, t_cub3d_info *cub_info)
 		b_info->start_y += b_info->stepy;
 		b_info->fraction += b_info->dx;
 		addr = get_pixel_addr_img(&cub_info->textures.minimap, \
-												b_info->start_x, b_info->start_y);
-	//	if (addr && (*(unsigned int *)addr == cub_info->minimap_info.wall_color \
-	//			|| *(unsigned int *)addr == cub_info->minimap_info.door_color))
-	//		break ;
+											b_info->start_x, b_info->start_y);
 		if (addr)
-			*(unsigned *)addr =  0XFFFFFF;
+			*(unsigned *)addr = 0XFFFFFF;
 		else
-			break;
+			break ;
 	}
 }
-
 
 static void	init_b_info(t_bresenham_info *b_info, t_cub3d_info *cub_info, t_ray_info *ray_info)
 {
 	int	fullmini_x;
 	int	fullmini_y;
 	int	block_size;
-	
+
 	block_size = cub_info->minimap_info.block_size;
 	fullmini_x = cub_info->player.pos.x * 10 \
 									- (cub_info->textures.minimap.width / 2);
@@ -101,13 +94,7 @@ static void	init_b_info(t_bresenham_info *b_info, t_cub3d_info *cub_info, t_ray_
 									- (cub_info->textures.minimap.height / 2);
 	b_info->start_x = (int)(cub_info->player.pos.x * 10.0) - fullmini_x;
 	b_info->start_y = (int)(cub_info->player.pos.y * 10.0) - fullmini_y;
-	
-//	if(is_wall_east_side(ray_info))
-//		ray_info->ray.y -= 1;
-//	else if (is_wall_north_side(ray_info))
-//		ray_info->ray.x -= 1;
 
-	
 	ray_info->ray.y -= 1;
 	ray_info->ray.x -= 1;
 
@@ -115,6 +102,7 @@ static void	init_b_info(t_bresenham_info *b_info, t_cub3d_info *cub_info, t_ray_
 		ray_info->ray.x += 1;
 	else if (is_wall_south_side(ray_info))
 		ray_info->ray.y += 1;
+
 	b_info->end_x = (int)(ray_info->ray.x * 10.0) + block_size - fullmini_x;
 	b_info->end_y = (int)(ray_info->ray.y * 10.0) + block_size - fullmini_y;
 

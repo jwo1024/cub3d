@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:39:55 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/01/31 17:44:19 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/06 15:34:28 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	classify_moveable_space(char map_data)
 	if (map_data == 'N' || map_data == 'S' \
 			|| map_data == 'E' || map_data == 'W')
 		return (2);
-	else if (map_data == '0' || map_data == '2')
+	else if (map_data == '0' || map_data == '2' || map_data == '3')
 		return (1);
 	return (0);
 }

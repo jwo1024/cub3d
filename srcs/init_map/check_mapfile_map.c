@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:22:42 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/02/02 21:03:24 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/06 15:33:41 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static unsigned int	check_map_width(char *line)
 
 int	is_valid_char(char c)
 {
-	if (c == '0' || c == '1' || c == 'N' || c == 'S' || \
+	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == '3' || \
 	c == 'E' || c == 'W' || c == ' ' || c == '2' || c == '\n')
 		return (TRUE);
 	return (FALSE);

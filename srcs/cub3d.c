@@ -6,7 +6,7 @@
 /*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:58:05 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/02/02 20:50:18 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/06 16:03:03 by jiwolee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main(int argc, char *argv[])
 	else
 		exit_with_error("argc error");
 	mlx_hook(info.window, 2, 0, &key_pressed, &info);
+	mlx_hook(info.window, KEY_EXIT, 0, &exit_pressed, &info);
 	mlx_key_hook(info.window, &key_pressed_space, &info);
 	mlx_loop_hook(info.mlx, &ray_loop, &info);
 	mlx_loop(info.mlx);
