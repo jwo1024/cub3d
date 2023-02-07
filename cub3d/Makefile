@@ -6,7 +6,7 @@
 #    By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 15:27:03 by jiwolee           #+#    #+#              #
-#    Updated: 2023/02/07 16:21:48 by jaeyjeon         ###   ########.fr        #
+#    Updated: 2023/02/07 17:35:10 by jaeyjeon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,6 @@ SRCS_1		= ./srcs/cub3d.c \
 			  ./srcs/util_action/get_key_action.c \
 			  ./srcs/util_action/move_rotate_player.c \
 			  ./srcs/util_action/get_mouse_action.c \
-			  ./srcs/util_action/break_door_action.c \
 			  ./srcs/minimap/init_minimap_img.c \
 			  ./srcs/minimap/draw_minimap.c \
 			  ./srcs/minimap/draw_fov_on_minimap.c
