@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 12:52:17 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/02/06 15:42:53 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/07 16:22:45 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	check_ray_hit(t_cub3d_info *info, t_ray_info *ray_info)
 		}
 		if (info->map.data[(int)ray_info->ray.y][(int)ray_info->ray.x] == '1')
 			hit = TRUE;
-		else if (info->map.data[(int)ray_info->ray.y][(int)ray_info->ray.x] == '2')
+		if (info->map.data[(int)ray_info->ray.y][(int)ray_info->ray.x] == '2')
 		{
 			hit = TRUE;
 			ray_info->is_door = TRUE;

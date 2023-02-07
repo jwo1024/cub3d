@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_type_info2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:57:44 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/02/02 20:49:49 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/07 16:21:37 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include	"util_init_map.h"
 #include	"util_error.h"
 #include	<stdlib.h>
-
-char	*get_info_line(char *line, int start_num); // h 파일로 옮기기
 
 void	init_type_info_no(t_textures_info *textures_info, char *line)
 {
@@ -82,20 +80,4 @@ void	init_type_info_do(t_textures_info *textures_info, char *line)
 	}
 	else
 		exit_with_error("identifier error DO");
-}
-
-char	*get_info_line(char *line, int start_num)
-{
- 	int		start;
-	char	*info_line;
-
-	start = start_num;
-	if (line[start] && line[start] != ' ')
-		exit_with_error("space not found at identifier");
-	while(line[start] && line[start] == ' ')
-	{
-		start++;
-	}
-	info_line = safe_ft_substr(line, start, ft_strlen(line) - start);
-	return (info_line);
 }

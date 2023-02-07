@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_save_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 21:00:21 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/02/02 21:05:22 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/07 16:23:29 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	read_save_map(int fd, t_map *map)
 	char			*line;
 	unsigned int	y;
 
-//	map->data = ft_calloc(map->height, sizeof(char *)); // safe_ft_calloc
 	map->data = (char **)safe_ft_calloc(map->height, sizeof(char *));
 	line = skip_mapfile_info_line(fd);
 	y = 0;
@@ -38,6 +37,7 @@ void	read_save_map(int fd, t_map *map)
 		y++;
 	}
 }
+//	map->data = ft_calloc(map->height, sizeof(char *)); // safe_ft_calloc
 
 static char	*skip_mapfile_info_line(int fd)
 {

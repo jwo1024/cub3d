@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_key_action.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:11:11 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/02/06 15:31:20 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/07 16:23:06 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ int	key_pressed(int key, t_cub3d_info *info)
 int	exit_pressed(int key)
 {
 	(void)key;
-	exit(0);
+	exit (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 18:00:35 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/02/06 00:32:59 by jiwolee          ###   ########seoul.kr  */
+/*   Updated: 2023/02/07 16:22:51 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	ver_line(t_cub3d_info *info, t_ray_info *ray_info, \
 
 	x = SCREEN_WIDTH - 1 - screen->x;
 	ratio = get_ratio(info, ray_info);
-
 	img.x = (int)(ratio * texture->width);
 	screen->y = ray_info->draw_start;
 	while (screen->y < ray_info->draw_end)

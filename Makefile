@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jiwolee <jiwolee@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 15:27:03 by jiwolee           #+#    #+#              #
-#    Updated: 2023/02/05 22:12:14 by jiwolee          ###   ########seoul.kr   #
+#    Updated: 2023/02/07 16:21:48 by jaeyjeon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS_1		= ./srcs/cub3d.c \
 			  ./srcs/init_map/check_mapfile_map.c \
 			  ./srcs/init_map/init_type_info1.c \
 			  ./srcs/init_map/init_type_info2.c \
+			  ./srcs/init_map/init_type_info3.c \
 			  ./srcs/init_map/read_save_map.c \
 			  ./srcs/init_map/check_mapfile_valid.c \
 			  ./srcs/init/init_mlx.c \

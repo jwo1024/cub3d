@@ -16,6 +16,7 @@
 		"string_view": "c",
 		"vector": "c",
 		"mlx.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"libft.h": "c"
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 17:00:42 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/02/05 22:23:36 by jiwolee          ###   ########seoul.kr  */
+/*   Updated: 2023/02/07 16:19:11 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "cub3d.h"
 # include "ray_cast.h"
 
-typedef	struct s_bresenham_info
+typedef struct s_bresenham_info
 {
 	int	start_x;
 	int	start_y;
