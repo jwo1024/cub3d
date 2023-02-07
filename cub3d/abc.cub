@@ -7,7 +7,7 @@ F 091,153,255
 
 NO       ./asset/north_texture.xpm
 
-EA    ./asset/east_texture_2.xpm
+EA    ./asset/east_texture.xpm
 
 SO ./asset/south_texture.xpm
 WE       ./asset/west_texture.xpm
