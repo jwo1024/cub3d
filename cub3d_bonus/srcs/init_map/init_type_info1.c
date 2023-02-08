@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:15:15 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/01/28 17:15:22 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:38:17 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ static void	if_valid_type_save_color(char *info_line, \
 	nums = safe_ft_split(info_line, ',');
 	if (is_valid_type_color_info(nums))
 	{
-		r = atoi(nums[0]);
-		g = atoi(nums[1]);
-		b = atoi(nums[2]);
-		if (r <= 255 && g <= 255 && b <= 255)
+		r = ft_atoi(nums[0]);
+		g = ft_atoi(nums[1]);
+		b = ft_atoi(nums[2]);
+		if (0 <= r && r <= 255 && 0 <= g && g <= 255 && 0 <= b && b <= 255)
 			*save_destination = make_color(0x00, r, g, b);
 		else
 			exit_with_error("wrong color range error");

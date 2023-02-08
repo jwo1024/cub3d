@@ -6,11 +6,11 @@
 #    By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 15:27:03 by jiwolee           #+#    #+#              #
-#    Updated: 2023/02/07 17:30:53 by jaeyjeon         ###   ########.fr        #
+#    Updated: 2023/02/08 17:19:12 by jaeyjeon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= cub3d_bonus
+NAME		= cub3D_bonus
 
 CC			= cc
 CFLAGS		= -Wall -Werror -Wextra -g

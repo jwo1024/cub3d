@@ -1,4 +1,12 @@
-C 214,255,255
+
+
+
+
+
+
+
+
+C 214,255,244
 
 
 F 091,153,255
@@ -11,6 +19,11 @@ EA    ./asset/east_texture.xpm
 
 SO ./asset/south_texture.xpm
 WE       ./asset/west_texture.xpm
+
+
+
+
+
 
 
     1111111111111111111111

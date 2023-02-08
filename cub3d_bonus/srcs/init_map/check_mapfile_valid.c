@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_mapfile_valid.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:39:55 by jiwolee           #+#    #+#             */
-/*   Updated: 2023/02/06 15:34:28 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:37:43 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int	check_valid_map(t_cub3d_info *info)
 			if (classify_moveable_space(info->map.data[y][x]) == 2)
 			{
 				start_point++;
-				if (start_point == 2)
-					exit_with_error("start_points are 2 or more");
 				init_player(info, x, y);
 			}
 			x++;
@@ -47,6 +45,8 @@ int	check_valid_map(t_cub3d_info *info)
 		y++;
 		x = 0;
 	}
+	if (start_point != 1)
+		exit_with_error("start_points error");
 	return (TRUE);
 }
 

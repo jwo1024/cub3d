@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_mapfile_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwolee <jiwolee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaeyjeon <jaeyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:22:42 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2023/02/06 15:33:41 by jiwolee          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:37:12 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	check_mapfile_map(int fd, t_cub3d_info *info)
 	height = 0;
 	width = 0;
 	line = skip_empty_line(fd);
+	if (!line)
+		exit_with_error("no map data");
 	while (line)
 	{
 		width = check_map_width(line);
