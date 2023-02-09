@@ -13,7 +13,7 @@ SO ./asset/south_texture.xpm
 
 WE       ./asset/west_texture.xpm
 
-DO ./asset/bungApang.xpm
+DO ./asset/door_texture.xpm
 
 
     1111111111111111111111
