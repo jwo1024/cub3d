@@ -56,7 +56,7 @@ static int	is_valid_mapfile_name(char *mapname)
 
 	if (mapname)
 	{
-		addr = ft_strchr(mapname, '.');
+		addr = ft_strrchr(mapname, '.');
 		if (addr && ft_strncmp(addr, ".cub\0", 5) == 0)
 			return (TRUE);
 	}
